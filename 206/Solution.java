@@ -16,6 +16,21 @@ class Solution {
         return p;
     }
 
+    public ListNode reverseList2(ListNode head) {
+        return reverse2(head, null);
+    }
+
+    private ListNode reverse2(ListNode head, ListNode p) {
+        if ( head != null ) {
+            ListNode temp = head.next;
+            //System.out.println(head.val);
+            head.next = p;
+            return reverse2(temp, head);
+        } else {
+            return p;
+        }
+    }
+
     public static void main(String[] args) {
         Solution solution = new Solution();
         ListNode one = new ListNode(4);
@@ -26,7 +41,7 @@ class Solution {
         two.next = three;
         three.next = four;
         four.next = null;
-        ListNode result = solution.reverseList(one);
+        ListNode result = solution.reverseList2(one);
 
         while (result != null) {
             System.out.println(result.val);
