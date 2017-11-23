@@ -4,18 +4,15 @@ public class Solution {
     public int countSubstrings(String s) {
         int length = s.length();
         ArrayList<String> tests = new ArrayList<>();
+        int count = 0;
         for ( int i = 0 ; i < length ; i++) {
             String root = Character.toString(s.charAt(i));
-            tests.add(root);
+            count++;
             for ( int j = i+1 ; j < length ; j++) {
                 root += Character.toString(s.charAt(j));
-                tests.add(root);
+                if (isPalindromic(root))
+                    count++;
             }
-        }
-        int count = 0;
-        for ( String test : tests ) {
-            if (isPalindromic(test))
-                count++;
         }
         return count;
     }
