@@ -1,36 +1,42 @@
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.Collections;
 
 public class Solution {
-    private class Elements {
-        final int val;
-        final int count;
-        final int k;
-        Elements(int val, int count, int k) {
-            this.val = val;
-            this.count = count;
-            this.k = k;
-        }
-        boolean isLarger() {
-            if ( this.k <= this.count )
-                return true;
-            return false;
-        }
-    }
-
     public List<Integer> topKFrequent(int[] nums, int k) {
         final List<Integer> result = new ArrayList<>();
-        System.out.print(nums.length);
-        int[] counts = new int[nums.length];
+        HashMap<Integer, Integer> counts = new HashMap<>();
         for ( int num : nums) {
-            counts[num-1]++;
+            Integer count = counts.get(num);
+            if ( count == null ) {
+                counts.put(num,1);
+            } else {
+                count++;
+                counts.put(num,count);
+            }
         }
-        for ( int index =0 ; index < counts.length ; index++ ) {
-            if ( counts[index] != 0) {
-                Elements element = new Elements(index, counts[index], k);
-                if (element.isLarger())
-                    result.add(index+1);
+        List<Map.Entry<Integer, Integer>> list_Data =
+            new ArrayList<Map.Entry<Integer, Integer>>(counts.entrySet());
+
+        Collections.sort(list_Data, new Comparator<Map.Entry<Integer, Integer>>(){
+            public int compare(Map.Entry<Integer, Integer> entry1,
+                               Map.Entry<Integer, Integer> entry2){
+                return (entry2.getValue().compareTo(entry1.getValue()));
+            }
+        });
+
+
+        for (Map.Entry<Integer, Integer> entry : list_Data) {
+            Integer key = entry.getKey();
+            Integer value = entry.getValue();
+            if ( k == 0 )
+                break;
+            else {
+                k--;
+                result.add(key);
             }
         }
         return result;
