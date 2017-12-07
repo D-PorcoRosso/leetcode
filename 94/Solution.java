@@ -43,10 +43,10 @@ class Solution {
         }
 
         List<Integer> returnResult = new ArrayList<>();
-        /*for ( TreeNode node : result ) {
+        for ( TreeNode node : result ) {
             System.out.println(node.val);
             returnResult.add(node.val);
-        }*/
+        }
         return returnResult;
     }
 
@@ -72,6 +72,14 @@ class Solution {
         a.right = e;
 
         solution.inorderTraversal(one);
+
+        TreeNode one_1 = new TreeNode(1);
+        TreeNode two_1 = new TreeNode(2);
+        TreeNode three_1 = new TreeNode(3);
+        one_1.right = two_1;
+        two_1.left = three_1;
+
+        solution.inorderTraversal(one_1);
     }
 
     private void printNode(TreeNode node) {
