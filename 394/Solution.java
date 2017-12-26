@@ -2,37 +2,38 @@ import java.util.Stack;
 
 class Solution {
     public String decodeString(String s) {
-        Stack<Character> count = new Stack<>(), content = new Stack<>();
         String result = "";
-        for ( int i = 0 ; i < s.length() ; i++ ) {
-            char c = s.charAt(i);
+        result += parseString(result,s);
+        return result;
+    }
+
+    private String parseString( String outputString, String target ) {
+        int count = 0;
+        int lpCount = 0;
+        String returnResult = "";
+        for(int i = 0;i< target.length();i++){
+            char c = target.charAt(i);
             System.out.println(c);
-            if ( Character.isDigit(c)) {
-                count.push(c);
+            if ( lpCount != 0 && Character.isDigit(c) ) {
+                count = Character.getNumericValue(c);
             } else {
-                if ( c == ']' ) {
-                    char popC;
-                    String temp = "";
-                    do {
-                        popC = content.pop();
-                        if ( popC == '[' )
-                            break;
-                        temp = popC + temp;
-                    } while ( true );
-                    int multiTimes = Character.getNumericValue(count.pop());
-                    System.out.println(temp);
-                    System.out.println(multiTimes);
-                    String multiTemp = "";
-                    for ( int j = 0 ; j < multiTimes ; j++ ) {
-                        multiTemp += temp;
+                if (c == ']') {
+                    lpCount--;
+                    if (lpCount == 0) {
+                        String temp = parseString(outputString, returnResult);
+                        for ( int index = 0 ; index < count ; index++ ) {
+                            returnResult += temp;
+                        }
                     }
-                    result += multiTemp;
+                } else if (c== '['){
+                    lpCount++;
                 } else {
-                    content.push(c);
+                    returnResult += c;
                 }
             }
         }
-        return result;
+        outputString += returnResult;
+        return outputString;
     }
 
     public static void main(String[] args) {
