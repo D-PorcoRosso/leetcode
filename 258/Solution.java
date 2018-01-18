@@ -1,21 +1,18 @@
 class Solution {
     public int addDigits(int num) {
-        int x = num;
-        while ( x >= 10 ) {
-            int sum = 0;
-            String temp = Integer.toString(x);
-            for ( int i = 0 ; i < temp.length() ; i++ ) {
-                sum += Character.getNumericValue(temp.charAt(i));
-            }
-            x = sum;
-        }
-        return x;
+        if ( num == 0 )
+            return 0;
+        int result = num%9;
+        if ( result == 0 )
+            return 9;
+        return result;
     }
 
     public static void main(String[] args) {
         Solution solution = new Solution();
         System.out.println(solution.addDigits(5));
         System.out.println(solution.addDigits(10));
+        System.out.println(solution.addDigits(9));
         System.out.println(solution.addDigits(38));
     }
 }
