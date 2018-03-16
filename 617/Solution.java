@@ -6,23 +6,20 @@ class Solution {
         TreeNode(int x) {val = x;}
     }
 
-    [1,3,2,5]
-[2,1,3,null,4,null,7]
-
     private void sum(TreeNode result, TreeNode t1, TreeNode t2) {
         if (t1 != null || t2 != null) {
 
             if (t1 != null && t2 != null)
-                result.val = t1.val + t2.val;
+                result = new TreeNode(t1.val + t2.val);
             if ( t1 == null )
-                result.val = t2.val;
+                result = new TreeNode(t2.val);
             if ( t2 == null )
-                result.val = t1.val;
-                        System.out.println(result.val);
-            
-            result.left = new TreeNode(0);
-            result.right = new TreeNode(0);
+                result = new TreeNode(t1.val);
         }
+        if ( result != null )
+            System.out.print(result.val);
+        else
+            System.out.print("null");
         if ( t1 == null && t2 == null )
             return;
         else if ( t1 == null ) {
@@ -39,7 +36,7 @@ class Solution {
     }
 
     public TreeNode mergeTrees(TreeNode t1,TreeNode t2) {
-        TreeNode result = new TreeNode(0);
+        TreeNode result = null;
         sum(result, t1, t2);
     
         return result;

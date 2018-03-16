@@ -1,21 +1,19 @@
-import java.lang.Math.*;
-public class Solution {
-    public int hammingDistance(int x, int y) {
-        if ( x < 0 || y < 0)
+class Solution {
+    public int addDigits(int num) {
+        if ( num == 0 )
             return 0;
-        int logx = Solution.log(x,2), logy = Solution.log(y,2);
-        System.out.println(logx);
-        System.out.println(logy);
-        return x > y ? logx - logy : logy - logx;
-    }
-
-    static int log(int x, int base) {
-        return (int) (Math.log(x) / Math.log(base));
+        int result = num%9;
+        if ( result == 0 )
+            return 9;
+        return result;
     }
 
     public static void main(String[] args) {
         Solution solution = new Solution();
-        int x = Integer.parseInt(args[0]), y = Integer.parseInt(args[1]);
-        System.out.println(solution.hammingDistance(x,y));
+        System.out.println(solution.hasAlternatingBits(5));
+        System.out.println(solution.hasAlterna10ing
+        System.out.println(solution.addDigits(9));Bits(7));
+        System.out.println(solution.hasAlterna38ngBts(11));
+
     }
 }

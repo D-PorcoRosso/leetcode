@@ -6,7 +6,7 @@ class Solution {
         String result = "";
         for ( int i = 0 ; i < s.length() ; i++ ) {
             char c = s.charAt(i);
-            System.out.println(c);
+//            System.out.println(c);
             if ( Character.isDigit(c)) {
                 count.push(c);
             } else {
@@ -20,8 +20,8 @@ class Solution {
                         temp = popC + temp;
                     } while ( true );
                     int multiTimes = Character.getNumericValue(count.pop());
-                    System.out.println(temp);
-                    System.out.println(multiTimes);
+//                    System.out.println(temp);
+//                    System.out.println(multiTimes);
                     String multiTemp = "";
                     for ( int j = 0 ; j < multiTimes ; j++ ) {
                         multiTemp += temp;

@@ -29,6 +29,8 @@ class Solution {
                 flatNode.add(node.val);
                 bfsQueue.offer(node.left);
                 bfsQueue.offer(node.right);
+            } else {
+                flatNode.add(null);
             }
         }
 
@@ -60,16 +62,16 @@ class Solution {
         Solution solution = new Solution();
         TreeNode one = new TreeNode(1);
         TreeNode two = new TreeNode(2);
-        TreeNode three = new TreeNode(3);
-        TreeNode four = new TreeNode(3);
-        //TreeNode a = new TreeNode(4);
-        TreeNode b = new TreeNode(2);
+        TreeNode three = new TreeNode(2);
+        //TreeNode four = new TreeNode(3);
+        TreeNode a = new TreeNode(3);
+        TreeNode b = new TreeNode(3);
         //TreeNode c = new TreeNode(3);
 
         one.left = two;
         one.right = three;
-        two.left = four;
-        //two.right = a;
+        //two.left = four;
+        two.right = a;
         three.left = b;
         //three.right = c;
 
