@@ -2,18 +2,18 @@ import java.util.*;
 
 class Solution {
     public int lengthOfLongestSubstring(String s) {
-        List<Character> exists = new ArrayList<>();
+        HashMap<Character,Integer> exists = new HashMap<>();
         int maxCount = 0, currentCount = 0;
         for ( int i = 0 ; i < s.length() ; i++ ) {
             for ( int j = i ; j < s.length() ; j++ ) {
                 Character c = s.charAt(j);
                 //System.out.println(c);
-                if ( exists.contains(c) ) {
+                if ( exists.get(c) != null ) {
                     exists.clear();
                     currentCount = 0;
                     break;
                 } else {
-                    exists.add(c);
+                    exists.put(c,1);
                     currentCount++;
                     if ( maxCount < currentCount )
                         maxCount = currentCount;
