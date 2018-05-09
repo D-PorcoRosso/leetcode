@@ -2,45 +2,66 @@ import java.util.*;
 
 class Solution {
     public String longestPalindrome(String s) {
-        List<String> allString = new ArrayList<>();
-        int maxLength = 0;
+        HashMap<String, Integer> allString = new HashMap<>();
+        int maxLength = 0, length = s.length();
         String maxString = "";
-        for ( int i = 0 ; i < s.length() ; i++ ) {
-            String temp = "";
-            for ( int j = i ; j < s.length() ; j++ ) {
-                temp+=s.charAt(j);
-                allString.add(temp);
+        
+        for (int i = 1 ; i < length ; i++) {
+            int k = i,j = i+1;
+            int localCount = 0;
+            while(k>=0 && k<length && j >=0 && j<length) {
+                if ( isPass(s,j,k) ) {
+                    localCount+=2;
+                    if ( localCount > maxLength ) {
+                        maxString = s.substring(k,j+1);
+                        maxLength = localCount;
+                    }
+                    j++;
+                    k--;
+                } else 
+                    break;
+            }
+            k = i-1;
+            j = i;
+            localCount = 0;
+            while(k>=0 && k<length && j >=0 && j<length) {
+                if ( isPass(s,j,k) ) {
+                    localCount+=2;
+                    if ( localCount > maxLength ) {
+                        maxString = s.substring(k,j+1);
+                        maxLength = localCount;
+                    }
+                    j++;
+                    k--;
+                } else 
+                    break;
+            }
+            k = i-1;
+            j = i+1;
+            localCount = 1;
+            while(k>=0 && k<length && j >=0 && j<length) {
+                if ( isPass(s,j,k) ) {
+                    localCount+=2;
+                    if ( localCount > maxLength ) {
+                        maxString = s.substring(k,j+1);
+                        maxLength = localCount;
+                    }
+                    j++;
+                    k--;
+                } else 
+                    break;
             }
         }
-        for ( String subString : allString ) {
-            //System.out.println(subString);
-            if ( isPalindromic(subString) ) {
-                if ( subString.length() > maxLength ) {
-                    maxLength = subString.length();
-                    maxString = subString;
-                }
-            }
-            //System.out.println(isPalindromic(subString));
-        }
+        if (maxLength == 0)
+            maxString += s.charAt(0);
+        
         return maxString;
     }
 
-    private boolean isPalindromic(String s) {
-        int length = s.length();
-        if ( length == 1 )
+    private boolean isPass(String s, int j, int k) {
+        if (s.charAt(j) == s.charAt(k))
             return true;
-        int index = 0;
-        while (index < length/2) {
-            //System.out.println(s.charAt(index));
-            //System.out.println(s.charAt(length-index-1));
-            //new java.util.Scanner(System.in).nextLine();
-            if (s.charAt(index) == s.charAt(length-index-1)) {
-                index++;
-            } else {
-                return false;
-            }
-        }
-        return true;
+        return false;
     }
 
     public static void main(String[] args) {
@@ -49,5 +70,6 @@ class Solution {
         System.out.println(solution.longestPalindrome("babad"));
         System.out.println(solution.longestPalindrome("cbbd"));
         System.out.println(solution.longestPalindrome("abdch"));
+        System.out.println(solution.longestPalindrome("civilwartestingwhetherthatnaptionoranynartionsoconceivedandsodedicatedcanlongendureWeareqmetonagreatbattlefiemldoftzhatwarWehavecometodedicpateaportionofthatfieldasafinalrestingplaceforthosewhoheregavetheirlivesthatthatnationmightliveItisaltogetherfangandproperthatweshoulddothisButinalargersensewecannotdedicatewecannotconsecratewecannothallowthisgroundThebravelmenlivinganddeadwhostruggledherehaveconsecrateditfaraboveourpoorponwertoaddordetractTgheworldadswfilllittlenotlenorlongrememberwhatwesayherebutitcanneverforgetwhattheydidhereItisforusthelivingrathertobededicatedheretotheulnfinishedworkwhichtheywhofoughtherehavethusfarsonoblyadvancedItisratherforustobeherededicatedtothegreattdafskremainingbeforeusthatfromthesehonoreddeadwetakeincreaseddevotiontothatcauseforwhichtheygavethelastpfullmeasureofdevotionthatweherehighlyresolvethatthesedeadshallnothavediedinvainthatthisnationunsderGodshallhaveanewbirthoffreedomandthatgovernmentofthepeoplebythepeopleforthepeopleshallnotperishfromtheearth"));
     }
 }
