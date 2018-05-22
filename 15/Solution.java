@@ -5,29 +5,23 @@ class Solution {
     public List<List<Integer>> threeSum(int[] nums) {
         int length = nums.length;
         Arrays.sort(nums);
-        int pre = Integer.MIN_VALUE;
         List<List<Integer>> result = new ArrayList<>();
         for ( int i = 0 ; i < length ; i++ ) {
-            if ( pre == nums[i] ) {
-                continue;
-            }
-            pre = nums[i];
-            for ( int j = i+1 ; j < length ; j++ ) {
-                for ( int k = j+1 ; k < length ; k++ ) {
-                    //if ( k != j && k != i && i != j ) {
-                        //System.out.println(nums[i]&nums[j]&nums[k]);
-                    if ( (nums[i] + nums[j] ) == -nums[k] ) {
-                        //System.out.println(nums[i]+":"+nums[j]+":"+nums[k]);
-                        
-                        List<Integer> temp = Arrays.asList(nums[i], nums[j], nums[k]);
-                        if ( !result.contains(temp) ) {
-                            result.add(temp);
-                        }
-                        break;
-                    }
-                    //}
+            int sum = -nums[i];
+            int j = i+1, k = length-1;
+            if ( i == 0 || (i > 0 && nums[i] != nums[i-1]) )
+            while (j < k) {
+                if ( nums[j] + nums[k] == sum ) {
+                    result.add(Arrays.asList(nums[i], nums[j], nums[k]));
+                    while ( j < k && nums[j] == nums[j+1] ) j++;
+                    while ( j < k && nums[k] == nums[k-1] ) k--;
+                    j++;k--;
+                } else if ( nums[j] + nums[k] < sum ) {
+                    j++;
+                } else {
+                    k--;
                 }
-            }
+            } 
         }
         return result;
     }
