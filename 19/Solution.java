@@ -1,3 +1,5 @@
+import java.util.HashMap;
+
 public class Solution {
     static class ListNode {
         int val;
@@ -14,29 +16,22 @@ public class Solution {
 
         if ( head == null )
             return null;
+        
+        HashMap<Integer, ListNode> mapping = new HashMap<>();
 
         while ( head != null ) {
             count++;
+            mapping.put(count, head);
             head = head.next;
         }
         int removeOne = count - n;
         if ( removeOne == 0 ) {
             return root.next;
         }
-        count = 0;
-        head = root;
-        while(true) {
-            if ( count == removeOne - 1 ) {
-                ListNode temp = head.next;
-                head.next = head.next.next;
-                temp = null;
-                break;
-            }
-            System.out.println(head.val);
-            head = head.next;
-            count++;
-        }
-        return root;
+        ListNode temp = mapping.get(removeOne);
+        temp.next = temp.next.next;
+        
+        return mapping.get(1);
     }
 
     public static void main(String[] args) {
@@ -51,7 +46,7 @@ public class Solution {
         l3.next = l4;
         l4.next = l5;
 
-        ListNode result = solution.removeNthFromEnd(l1, 1);
+        ListNode result = solution.removeNthFromEnd(l1, 5);
         while(result != null) {
             System.out.println(result.val);
             result = result.next;
