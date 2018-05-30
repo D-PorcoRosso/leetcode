@@ -2,13 +2,15 @@ import java.util.HashSet;
 
 class Solution {
     public int removeDuplicates(int[] nums) {
-        int count = 0;
-        HashSet<Integer> storage = new HashSet<>();
-        for ( int i = 0 ; i < nums.length ; i++ ) {
-            if ( !storage.contains(nums[i]) ) {
-                storage.add(nums[i]);
-                nums[count] = nums[i];
+        if ( nums.length == 0 )
+            return 0;
+        int index = 0;
+        int count = 1;
+        for ( int i = 1 ; i < nums.length ; i++ ) {
+            if ( nums[index] != nums[i] ) {
+                index++;
                 count++;
+                nums[index] = nums[i];
             }
         }
         return count;
