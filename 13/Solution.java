@@ -1,20 +1,25 @@
 import java.util.*;
 
 class Solution {
+
+    private static Map<Character, Integer> mapping = new HashMap(){
+        {
+            put('I', 1);
+            put('V', 5);
+            put('X', 10);
+            put('L', 50);
+            put('C', 100);
+            put('D', 500);
+            put('M', 1000);
+        }
+    };
     public int romanToInt(String s) {
         int sum = 0;
-        HashMap<Character, Integer> mapping = new HashMap<>();
-        mapping.put('I',1);
-        mapping.put('V',5);
-        mapping.put('X',10);
-        mapping.put('L',50);
-        mapping.put('C',100);
-        mapping.put('D',500);
-        mapping.put('M',1000);
-        for ( int i = 0 ; i < s.length() ; i++) {
-            int current = mapping.get(s.charAt(i));
+        char[] array = s.toCharArray();
+        for ( int i = 0 ; i < array.length ; i++) {
+            int current = mapping.get(array[i]);
             if ( i < s.length() - 1 ) {
-                int next = mapping.get(s.charAt(i+1));
+                int next = mapping.get(array[i+1]);
                 if (current < next) {
                     sum += (next - current);
                     i++;
