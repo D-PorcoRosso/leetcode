@@ -14,19 +14,19 @@ class Solution {
         }
     };
     public int romanToInt(String s) {
-        int sum = 0;
+        
+        if ( s == null || s.length() == 0 )
+            return 0;
         char[] array = s.toCharArray();
-        for ( int i = 0 ; i < array.length ; i++) {
+        int sum = mapping.get(array[array.length-1]);
+        int pre = sum;
+        for ( int i = array.length - 2 ; i >= 0 ; i--) {
             int current = mapping.get(array[i]);
-            if ( i < s.length() - 1 ) {
-                int next = mapping.get(array[i+1]);
-                if (current < next) {
-                    sum += (next - current);
-                    i++;
-                    continue;
-                }
-            }
-            sum += current;
+            if ( pre > current ) 
+                sum -= current;
+            else
+                sum += current;
+            pre = current;
         }
         return sum;
     }
