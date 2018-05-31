@@ -12,26 +12,23 @@ class Solution {
     }
 
     public int minDepth(TreeNode root) {
-        if ( root == null )
+        if(root == null)
             return 0;
-        Queue<TreeNode> inputLayer = new LinkedList<>();
-        inputLayer.add(root);
-        return count(inputLayer);
+
+        return minDepth(root, 0, Integer.MAX_VALUE);
     }
-
-    private int count(Queue<TreeNode> queue) {
-        Queue<TreeNode> nextLayer = new LinkedList<>();
-        while(!queue.isEmpty()) {
-            TreeNode node = queue.poll();
-            if ( node != null ) {
-                if ( node.left == null && node.right == null )
-                    return 1;
-                nextLayer.add(node.left);
-                nextLayer.add(node.right);
-            }
+    int minDepth(TreeNode node, int currDepth, int minDepth){
+        if ( node == null )
+            return minDepth;
+        currDepth++;
+        if ( node.left == null && node.right == null) {
+            if ( currDepth < minDepth ) 
+                minDepth = currDepth;
         }
-
-        return count(nextLayer)+1;
+        minDepth = minDepth(node.left, currDepth, minDepth);
+        minDepth = minDepth(node.right, currDepth, minDepth);
+        
+        return minDepth;        
     }
 
     public static void main(String[] args) {
