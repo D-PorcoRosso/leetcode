@@ -2,14 +2,17 @@ import java.util.*;
 
 class Solution {
     public int maxArea(int[] height) {
-        int length = height.length;
+        int left = 0, right = height.length-1;
         int max = Integer.MIN_VALUE;
-        for ( int i = 0 ; i < length ; i++ ) {
-            for ( int j = 0 ; j < length ; j++ ) {
-                int area = (j-i) * Math.min(height[i],height[j]);
-                if ( area > max )
-                    max = area;
-            }
+        int rightHeight = height[right], leftHight = height[left];
+        while ( left < right ) {
+            int localMax = Math.min(height[left],height[right]) * (right - left);
+            if (localMax > max)
+                max = localMax;
+            if (height[left] < height[right])
+                left++;
+            else
+                right--;
         }
         return max;
     }
@@ -18,6 +21,9 @@ class Solution {
         Solution solution = new Solution();
         int[] test1 = {1,2,3,4,5};
         System.out.println(solution.maxArea(test1));
-        
+        int[] test2 = {1,1};
+        System.out.println(solution.maxArea(test2));
+        int[] test3 = {1,2,1};
+        System.out.println(solution.maxArea(test3));
     }
 }
