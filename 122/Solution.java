@@ -4,13 +4,7 @@ class Solution {
         int max = 0, result = 0;
         for ( int i = length - 2 ; i >=0 ; i-- ) {
             int localMax = 0;
-            for ( int j = i + 1 ; j < length ; j++ ) {
-                int temp = prices[j] - prices[i];
-                if (temp > localMax)
-                    localMax = temp;
-            }
             max = Math.max(max, (prices[i+1] - prices[i]) + max);
-            result = Math.max(localMax, max);
         }
         return max;
     }
