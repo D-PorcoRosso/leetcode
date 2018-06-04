@@ -1,20 +1,20 @@
 import java.util.*;
 
 class Solution {
+    // 原來if放在for裡面去init會比單獨init一層來得慢
     public int minPathSum(int[][] grid) {
         int m = grid.length , n = grid[0].length;
         int[][] matrix = new int[m][n];
-        for ( int i = 0 ; i < m ; i++ ) {
-            for ( int j = 0 ; j < n ; j++ ) {
-                if ( i == 0 && j == 0 ) matrix[i][j] = grid[i][j];
-                else {
-                    if ( i == 0 )
-                        matrix[i][j] = matrix[i][j-1] + grid[i][j];
-                    else if ( j == 0 )
-                        matrix[i][j] = matrix[i-1][j] + grid[i][j];
-                    else
-                        matrix[i][j] = grid[i][j] + Math.min(matrix[i-1][j] , matrix[i][j-1]);
-                }
+        matrix[0][0] = grid[0][0];
+        for ( int i = 1 ; i < m ; i++ ) {
+            matrix[i][0] = matrix[i-1][0] + grid[i][0];
+        }
+        for ( int j = 1 ; j < n ; j++ ) {
+            matrix[0][j] = matrix[0][j-1] + grid[0][j];
+        }
+        for ( int i = 1 ; i < m ; i++ ) {
+            for ( int j = 1 ; j < n ; j++ ) {
+                matrix[i][j] = grid[i][j] + Math.min(matrix[i-1][j] , matrix[i][j-1]);
             }
         }
         return matrix[m-1][n-1];
