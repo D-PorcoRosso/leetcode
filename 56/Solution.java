@@ -29,9 +29,6 @@ class Solution {
                 return 0;
             }
         });
-
-        System.out.println("after sort:"+intervals);
-
         
         List<Interval> result = new ArrayList<>();
         
