@@ -2,6 +2,7 @@ import java.util.*;
 class Solution {
     public List<List<Integer>> subsetsWithDup(int[] nums) {
         int length = nums.length;
+        Arrays.sort(nums);
         List<List<Integer>> next = new LinkedList<>();
         List<List<Integer>> indexResult = new LinkedList<>();
         for ( int i = 0 ; i < length ; i++ ) {
@@ -33,7 +34,7 @@ class Solution {
             for( Integer i : index ) {
                 realValue.add(nums[i]);
             }
-            Collections.sort(realValue);
+            //Collections.sort(realValue);
             if ( !result.contains(realValue) )
                 result.add(realValue);
         }
