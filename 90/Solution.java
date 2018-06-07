@@ -1,5 +1,30 @@
 import java.util.*;
 class Solution {
+    /*
+    public List<List<Integer>> subsetsWithDup(int[] nums) {
+        List<List<Integer>> result = new ArrayList<List<Integer>>();
+        if (nums == null || nums.length == 0) {
+            return result;
+        }
+        Arrays.sort(nums);
+        helper(result, new ArrayList<Integer>(), nums, 0);
+        return result;
+    }
+    
+    private void helper(List<List<Integer>> result, List<Integer> cur, int[] nums, int index) {
+        if (nums.length == index) {
+            result.add(new ArrayList<Integer>(cur));
+            return;
+        }
+        cur.add(nums[index]);
+        helper(result, cur, nums, index + 1);
+        cur.remove(cur.size() - 1);
+        while (index + 1 < nums.length && nums[index + 1] == nums[index]) {
+            index++;
+        }
+        helper(result, cur, nums, index + 1);
+    } */
+
     public List<List<Integer>> subsetsWithDup(int[] nums) {
         int length = nums.length;
         Arrays.sort(nums);
