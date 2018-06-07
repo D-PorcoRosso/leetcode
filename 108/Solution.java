@@ -34,15 +34,29 @@ class Solution {
         root.right = generateTree(nums, middle + 1, end);
         return root;
     }
-    
-    public TreeNode helper(int[] num, int low, int high) {
-        if (low > high) { // Done
+
+    private TreeNode helper(int[] nums, int start, int end) {
+        if (start > end) {
+            System.out.println(start + ", " + end);
             return null;
         }
-        int mid = (low + high) / 2;
-        TreeNode node = new TreeNode(num[mid]);
-        node.left = helper(num, low, mid - 1);
-        node.right = helper(num, mid + 1, high);
+        
+        int mid = (end + start) / 2;
+        TreeNode root = new TreeNode(nums[mid]);
+        root.left = helper(nums, start, mid - 1);
+        root.right = helper(nums, mid + 1, end);
+        
+        return root;
+    }
+    
+    private TreeNode buildTree(int[] num, int start, int end) {
+        if (start > end) {
+            return null;
+        }
+
+        TreeNode node = new TreeNode(num[(start + end) / 2]);
+        node.left = buildTree(num, start, (start + end) / 2 - 1);
+        node.right = buildTree(num, (start + end) / 2 + 1, end);
         return node;
     }
 

@@ -25,7 +25,6 @@ class Solution {
                 return true;
             return false;
         }
-        System.out.println(root.val+":"+sum);
         
         if ( root.left == null && root.right != null )
             return has(root.right, sum - root.val);
