@@ -8,7 +8,9 @@ class Solution {
     public ListNode mergeKLists(ListNode[] lists) {
         int count = lists.length;
         ListNode root = null, list = null;
-        while ( count > 0 ) {
+        if ( count == 1 )
+            return lists[0];
+        while ( count > 1 ) {
             count = 0;
             ListNode localMin = null;
             int localMinIndex = 0;
@@ -20,9 +22,9 @@ class Solution {
                     break;
                 }
             }
-            System.out.println(localMin.val);
             if ( localMin == null )
                 break;
+            System.out.println(localMin.val+"\n");
             for ( int i = 0 ; i < lists.length ; i++ ) {
                 ListNode node = lists[i];
                 if ( node != null ) {
@@ -41,6 +43,15 @@ class Solution {
             } else {
                 list.next = localMin;
                 list = list.next;
+            }
+            for ( int i = 0 ; i < lists.length ; i++ ) {
+                if ( lists[i] != null ) {
+                    if ( localMin.val == lists[i].val ) {
+                        list.next = lists[i];
+                        list = list.next;
+                        lists[i] = lists[i].next;
+                    }
+                }
             }
         }
         return root;
