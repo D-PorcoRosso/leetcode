@@ -1,4 +1,7 @@
-import java.util.*;
+package mysource.Solution77;
+
+import java.util.LinkedList;
+import java.util.List;
 class Solution {
     public List<List<Integer>> combine(int n, int k) {
         int[] nums = new int[n];

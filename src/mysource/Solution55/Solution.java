@@ -1,4 +1,4 @@
-import java.util.*;
+package mysource.Solution55;
 
 class Solution {
 

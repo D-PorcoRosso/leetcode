@@ -1,4 +1,7 @@
-import java.util.*;
+package mysource.Solution204;
+
+import java.util.ArrayList;
+import java.util.List;
 
 class Solution {
     public int countPrimes(int n) {

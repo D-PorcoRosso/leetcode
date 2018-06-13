@@ -1,3 +1,5 @@
+package mysource.Solution496;
+
 class Solution {
     public int[] nextGreaterElement(int[] nums1, int[] nums2) {
         

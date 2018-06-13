@@ -1,5 +1,6 @@
+package mysource.Solution36;
 
-import java.util.*;
+import java.util.HashSet;
 
 class Solution {
     public boolean isValidSudoku(char[][] board) {

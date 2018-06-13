@@ -1,3 +1,5 @@
+package mysource.Solution24;
+
 public class Solution {
     static class ListNode {
         int val;

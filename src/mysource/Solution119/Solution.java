@@ -1,4 +1,7 @@
-import java.util.*;
+package mysource.Solution119;
+
+import java.util.LinkedList;
+import java.util.List;
 class Solution {
 
     public List<Integer> getRow(int rowIndex) {

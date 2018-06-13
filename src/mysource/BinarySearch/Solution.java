@@ -1,3 +1,5 @@
+package mysource.BinarySearch;
+
 class Solution {
     int binarySearch(int nums[], int l, int r, int x) {
         if ( r >= l ) {

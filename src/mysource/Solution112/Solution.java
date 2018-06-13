@@ -1,4 +1,4 @@
-import java.util.*;
+package mysource.Solution112;
 
 class Solution {
     static class TreeNode {

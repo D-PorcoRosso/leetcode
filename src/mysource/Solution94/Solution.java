@@ -1,7 +1,9 @@
+package mysource.Solution94;
+
 import java.util.ArrayList;
+import java.util.EmptyStackException;
 import java.util.List;
 import java.util.Stack;
-import java.util.EmptyStackException;
 
 
 class Solution {

@@ -1,4 +1,7 @@
-import java.util.*;
+package mysource.Solution71;
+
+import java.util.LinkedList;
+import java.util.Queue;
 
 class Solution {
     public String simplifyPath(String path) {

@@ -1,4 +1,5 @@
-import java.util.*;
+package mysource.Solution80;
+
 class Solution {
     public int removeDuplicates(int[] nums) {
         int length = nums.length;

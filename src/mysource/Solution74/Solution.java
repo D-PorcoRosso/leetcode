@@ -1,3 +1,5 @@
+package mysource.Solution74;
+
 class Solution {
     public boolean searchMatrix(int[][] matrix, int target) {
 

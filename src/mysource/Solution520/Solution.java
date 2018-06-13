@@ -1,4 +1,4 @@
-import java.util.*;
+package mysource.Solution520;
 
 class Solution {
     public boolean detectCapitalUse(String word) {

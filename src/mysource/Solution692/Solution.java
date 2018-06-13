@@ -1,3 +1,5 @@
+package mysource.Solution692;
+
 import java.util.*;
 
 class Solution {

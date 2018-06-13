@@ -1,4 +1,5 @@
-import java.rmi.server.RemoteServer;
+package mysource.Solution237;
+
 class Solution {
     static class ListNode {
         int val;

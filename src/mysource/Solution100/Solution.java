@@ -1,6 +1,4 @@
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
+package mysource.Solution100;
 
 class Solution {
     static class TreeNode {
@@ -48,6 +46,6 @@ class Solution {
         three.left = b;
         //three.right = c;
 
-        System.out.println(solution.isSymmetric(one));
+        //System.out.println(solution.isSymmetric(one));
     }
 }

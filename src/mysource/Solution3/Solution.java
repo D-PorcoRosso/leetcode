@@ -1,4 +1,6 @@
-import java.util.*;
+package mysource.Solution3;
+
+import java.util.HashMap;
 
 class Solution {
     public int lengthOfLongestSubstring(String s) {

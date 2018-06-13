@@ -1,4 +1,4 @@
-import java.util.*;
+package mysource.Solution64;
 
 class Solution {
     // 原來if放在for裡面去init會比單獨init一層來得慢

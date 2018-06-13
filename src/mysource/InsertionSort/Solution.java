@@ -1,3 +1,5 @@
+package mysource.InsertionSort;
+
 class Solution {
     public int[] insertionSort(int[] nums) {
         for (int i = 1 ; i < nums.length; i++) {

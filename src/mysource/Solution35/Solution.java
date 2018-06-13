@@ -1,3 +1,4 @@
+package mysource.Solution35;
 
 class Solution {
     public int searchInsert(int[] nums, int target) {

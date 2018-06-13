@@ -1,3 +1,5 @@
+package mysource.Solution338;
+
 import java.util.ArrayList;
 
 class Solution {

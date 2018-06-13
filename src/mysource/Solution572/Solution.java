@@ -1,3 +1,5 @@
+package mysource.Solution572;
+
 class Solution {
     static class TreeNode {
         int val;

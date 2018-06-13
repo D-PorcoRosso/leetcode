@@ -1,4 +1,7 @@
-import java.util.*;
+package mysource.Solution599;
+
+import java.util.ArrayList;
+import java.util.List;
 
 class Solution {
     public String[] findRestaurant(String[] list1, String[] list2) {

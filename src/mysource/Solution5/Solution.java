@@ -1,4 +1,6 @@
-import java.util.*;
+package mysource.Solution5;
+
+import java.util.HashMap;
 
 class Solution {
     public String longestPalindrome(String s) {

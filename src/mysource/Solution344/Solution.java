@@ -1,3 +1,5 @@
+package mysource.Solution344;
+
 class Solution {
     public String reverseString(String s) {
         StringBuilder result = new StringBuilder();

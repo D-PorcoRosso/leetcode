@@ -1,4 +1,4 @@
-import java.util.Currency;
+package mysource.Solution485;
 
 class Solution {
     public int findMaxConsecutiveOnes(int[] nums) {

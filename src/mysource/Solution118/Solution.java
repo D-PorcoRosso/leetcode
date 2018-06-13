@@ -1,4 +1,7 @@
-import java.util.*;
+package mysource.Solution118;
+
+import java.util.LinkedList;
+import java.util.List;
 class Solution {
 
     public List<List<Integer>> generate(int numRows) {

@@ -1,4 +1,6 @@
-import java.util.*;
+package mysource.CountingSort;
+
+import java.util.Arrays;
 class Solution {
     public void countingSort(int[] nums) {
         int[] range = new int[100];

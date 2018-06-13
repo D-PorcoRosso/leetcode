@@ -1,3 +1,5 @@
+package mysource.Solution521;
+
 class Solution {
     public int findLUSlength(String a, String b) {
         if (a.isEmpty() || b.isEmpty())

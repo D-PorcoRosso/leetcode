@@ -1,3 +1,4 @@
+package mysource.Solution50;
 
 class Solution {
 

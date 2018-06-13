@@ -1,4 +1,8 @@
-import java.util.*;
+package mysource.Solution16;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 class Solution {
 

@@ -1,3 +1,5 @@
+package mysource.Solution70;
+
 class Solution {
     public int climbStairs(int n) {
         return run2(n);

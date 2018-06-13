@@ -1,4 +1,5 @@
-import java.lang.Math.*;
+package mysource.Solution657;
+
 public class Solution {
     public boolean judgeCircle(String moves) {
         if ( moves == null || moves.isEmpty() )

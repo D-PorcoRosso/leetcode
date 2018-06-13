@@ -1,3 +1,4 @@
+package mysource.Solution58;
 
 class Solution {
     public int lengthOfLastWord(String s) {

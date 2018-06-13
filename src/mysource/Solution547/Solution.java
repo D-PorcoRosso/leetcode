@@ -1,8 +1,6 @@
-import java.lang.Math.*;
-import java.lang.reflect.Array;
+package mysource.Solution547;
+
 import java.util.ArrayList;
-import java.util.Queue;
-import java.util.LinkedList;
 
 public class Solution {
     public int findCircleNum(int[][]M) {

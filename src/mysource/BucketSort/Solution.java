@@ -1,4 +1,9 @@
-import java.util.*;
+package mysource.BucketSort;
+
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 class Solution {
 
     public void bucketSort(float[] arr, int size) {

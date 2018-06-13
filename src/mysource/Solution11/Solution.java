@@ -1,4 +1,4 @@
-import java.util.*;
+package mysource.Solution11;
 
 class Solution {
     public int maxArea(int[] height) {

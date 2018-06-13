@@ -1,5 +1,4 @@
-import java.text.DecimalFormat;
-import java.util.*;
+package mysource.Solution43;
 
 class Solution {
 

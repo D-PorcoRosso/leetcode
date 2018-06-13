@@ -1,4 +1,7 @@
-import java.util.*;
+package mysource.Solution108;
+
+import java.util.LinkedList;
+import java.util.Queue;
 
 class Solution {
     static class TreeNode {

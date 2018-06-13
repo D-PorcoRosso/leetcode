@@ -1,4 +1,7 @@
-import java.util.*;
+package mysource.Solution13;
+
+import java.util.HashMap;
+import java.util.Map;
 
 class Solution {
 

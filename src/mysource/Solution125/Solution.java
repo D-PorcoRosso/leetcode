@@ -1,4 +1,5 @@
-import java.util.*;
+package mysource.Solution125;
+
 class Solution {
     public boolean isPalindrome(String s) {
         

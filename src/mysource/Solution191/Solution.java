@@ -1,5 +1,4 @@
-import java.util.HashMap;
-import java.util.Map;
+package mysource.Solution191;
 
 class Solution {
     public int hammingWeight(int n) {

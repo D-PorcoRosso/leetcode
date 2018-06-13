@@ -1,3 +1,5 @@
+package mysource.Solution394;
+
 import java.util.Stack;
 
 class Solution {

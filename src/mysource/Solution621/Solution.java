@@ -1,10 +1,9 @@
-import java.lang.*;
-import java.util.Map;
-import java.util.ArrayList;
+package mysource.Solution621;
+
 import java.util.HashMap;
-import java.util.Map.Entry;
-import java.util.Queue;
 import java.util.LinkedList;
+import java.util.Map;
+import java.util.Queue;
 
 public class Solution {
     public int leastInterval(char[] tasks, int n) {

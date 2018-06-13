@@ -1,3 +1,5 @@
+package mysource.Solution693;
+
 class Solution {
     public boolean hasAlternatingBits(int n) {
         int preMod = 0, count = 0;

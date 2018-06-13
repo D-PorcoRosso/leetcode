@@ -1,4 +1,4 @@
-import java.util.*;
+package mysource.Solution62;
 
 class Solution {
     public int uniquePaths(int m, int n) {

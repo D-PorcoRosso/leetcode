@@ -1,4 +1,6 @@
-import java.util.*;
+package mysource.Solution10;
+
+import java.util.Stack;
 
 class Solution {
     Stack<Character> inputs = new Stack<>();

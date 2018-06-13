@@ -1,5 +1,7 @@
-import java.util.List;
+package mysource.Solution728;
+
 import java.util.ArrayList;
+import java.util.List;
 
 class Solution {
     public List<Integer> selfDividingNumbers(int left, int right) {

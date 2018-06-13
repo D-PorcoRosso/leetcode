@@ -1,4 +1,7 @@
-import java.util.*;
+package mysource.Solution93;
+
+import java.util.ArrayList;
+import java.util.List;
 class Solution {
     public List<String> restoreIpAddresses(String s) {
         List<String> ipResult = new ArrayList<>();

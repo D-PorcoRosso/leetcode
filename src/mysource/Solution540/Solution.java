@@ -1,3 +1,5 @@
+package mysource.Solution540;
+
 class Solution {
     public int singleNonDuplicate(int[] nums) {
         for ( int i = 0 ; i < nums.length - 2 ; i+=2 ) {

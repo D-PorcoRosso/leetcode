@@ -1,3 +1,5 @@
+package mysource.Solution575;
+
 import java.util.HashMap;
 
 class Solution {

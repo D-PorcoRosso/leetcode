@@ -1,6 +1,4 @@
-import java.util.*;
-
-/*
+package mysource.Solution60;/*
     public String getPermutation(int n, int k) {
         int[] facts = new int[n + 1];
         Arrays.fill(facts, 1);

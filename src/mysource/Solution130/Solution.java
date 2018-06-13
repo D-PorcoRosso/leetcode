@@ -1,6 +1,7 @@
 package mysource.Solution130;
 
-import java.util.*;
+import java.util.LinkedList;
+import java.util.List;
 class Solution {
     class point {
         final int x;

@@ -1,4 +1,4 @@
-import java.util.HashSet;
+package mysource.Solution26;
 
 class Solution {
     public int removeDuplicates(int[] nums) {

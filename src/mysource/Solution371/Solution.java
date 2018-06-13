@@ -1,4 +1,4 @@
-import java.rmi.dgc.Lease;
+package mysource.Solution371;
 
 class Solution {
     public int getSum(int a, int b) {

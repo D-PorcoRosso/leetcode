@@ -1,4 +1,4 @@
-import java.util.*;
+package mysource.Solution59;
 
 class Solution {
     public int[][] generateMatrix(int n) {
@@ -82,7 +82,7 @@ class Solution {
 
     public static void main(String[] args) {
         Solution solution = new Solution();
-        int[][] t1 = solution.spiralOrder(1);
+        /*int[][] t1 = solution.spiralOrder(1);
         for( int i = 0 ; i < t1.length ; i++) {
             for( int j = 0 ; j < t1.length ; j++) {
                 System.out.print(t1[i][j]+",");
@@ -113,6 +113,6 @@ class Solution {
                 System.out.print(t4[i][j]+",");
             }
             System.out.println("\n");
-        }
+        }*/
     }
 }

@@ -1,3 +1,5 @@
+package mysource.Solution2;
+
 public class Solution {
     static class ListNode {
         int val;

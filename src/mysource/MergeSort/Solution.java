@@ -1,3 +1,5 @@
+package mysource.MergeSort;
+
 class Solution {
     
     private void merge(int[] arr, int left,int mid, int right) {

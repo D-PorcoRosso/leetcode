@@ -1,4 +1,7 @@
-import java.util.*;
+package mysource.Solution697;
+
+import java.util.HashMap;
+import java.util.Map;
 
 class Solution {
     class Point {

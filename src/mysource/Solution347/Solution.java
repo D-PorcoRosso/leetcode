@@ -1,9 +1,6 @@
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.Collections;
+package mysource.Solution347;
+
+import java.util.*;
 
 public class Solution {
     public List<Integer> topKFrequent(int[] nums, int k) {

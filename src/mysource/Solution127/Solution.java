@@ -1,4 +1,8 @@
-import java.util.*;
+package mysource.Solution127;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 class Solution {
     public int ladderLength(String beginWord, String endWord, List<String> wordList) {
         if ( !wordList.contains(endWord) )

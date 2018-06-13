@@ -1,3 +1,5 @@
+package mysource.Solution67;
+
 class Solution {
     public String addBinary(String a, String b) {
         int aIndex = a.length() - 1;

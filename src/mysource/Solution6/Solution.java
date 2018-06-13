@@ -1,4 +1,6 @@
-import java.util.*;
+package mysource.Solution6;
+
+import java.util.Arrays;
 
 class Solution {
     public String convert(String s, int numRows) {

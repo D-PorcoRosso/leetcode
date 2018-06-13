@@ -1,4 +1,4 @@
-import java.util.*;
+package mysource.Solution167;
 
 class Solution {
     public int[] twoSum(int[] numbers, int target) {

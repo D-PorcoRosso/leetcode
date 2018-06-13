@@ -1,4 +1,5 @@
-import java.lang.Math.*;
+package mysource.Solution9;
+
 public class Solution {
     public boolean isPalindrome(int x) {
         boolean isPalindrome = true;

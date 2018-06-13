@@ -1,4 +1,7 @@
-import java.util.*;
+package mysource.Solution242;
+
+import java.util.HashMap;
+import java.util.Map;
 
 class Solution {
     public boolean isAnagram(String s, String t) {

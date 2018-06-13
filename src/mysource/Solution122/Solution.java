@@ -1,3 +1,5 @@
+package mysource.Solution122;
+
 class Solution {
     public int maxProfit(int[] prices) {
         int length = prices.length;

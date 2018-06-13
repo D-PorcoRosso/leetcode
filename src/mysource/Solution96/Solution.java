@@ -1,4 +1,5 @@
-import java.util.*;
+package mysource.Solution96;
+
 class Solution {
     public int numTrees(int n) {
         int[] count = new int[n+1];
