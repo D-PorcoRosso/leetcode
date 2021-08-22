@@ -36,8 +36,58 @@ public class Solution19 {
         return mapping.get(1);
     }
 
-    /*public static void main(String[] args) {
-        Solution solution = new Solution();
+    public ListNode removeNthFromEnd2021(ListNode head, int n) {
+        if (head == null) {
+            return null;
+        }
+        ListNode temp = head;
+        HashMap<Integer, ListNode> allNode = new HashMap<>();
+        int count = 0;
+        while (temp != null) {
+            count++;
+            allNode.put(count, temp);
+            temp = temp.next;
+        }
+        if (n > count)
+            return head;
+        if (count == 1) {
+            head = null;
+        } else {
+            int target = count - n +1;
+            if (target == 1) {
+                head = allNode.get(target).next;
+            } else {
+                if (allNode.get(target-1).next != null) 
+                    allNode.get(target-1).next = allNode.get(target-1).next.next;
+            }
+        }
+        return head;
+    }
+
+    public ListNode removeNthFromEnd2021_from_ans(ListNode head, int n) {
+        if (head == null) {
+            return null;
+        }
+        ListNode start = head, end = head;
+
+        while(end != null && n>0) {
+            end = end.next;
+            n--;
+        }
+        if(end == null) {
+            head = start.next;
+            return head;
+        }
+        while(end.next != null) {
+            end = end.next;
+            start = start.next;
+        }
+        start.next = start.next.next;
+        return head;
+    }
+
+    public static void main(String[] args) {
+        Solution19 solution = new Solution19();
         ListNode l1 = new ListNode(1);
         ListNode l2 = new ListNode(2);
         ListNode l3 = new ListNode(3);
@@ -47,11 +97,12 @@ public class Solution19 {
         l2.next = l3;
         l3.next = l4;
         l4.next = l5;
+        l5.next = null;
 
-        ListNode result = solution.removeNthFromEnd(l1, 5);
+        ListNode result = solution.removeNthFromEnd2021_from_ans(l1, 3);
         while(result != null) {
             System.out.println(result.val);
             result = result.next;
         }
-    }*/
+    }
 }
