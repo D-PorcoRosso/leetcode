@@ -1,5 +1,7 @@
 package mysource.Solution23;
 
+import java.util.PriorityQueue;
+
 class Solution {
     static class ListNode {
         int val;
@@ -59,6 +61,30 @@ class Solution {
         return root;
     }
 
+    public ListNode mergeKLists_2021(ListNode[] lists) {
+        ListNode root = null;
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
+        for ( int i = 0 ; i < lists.length; i++ ) {
+            ListNode current = lists[i];
+            while(current != null) {
+                pq.offer(current.val);
+                current = current.next;
+            }
+        }
+        ListNode current = null, temp;
+        for ( int i = 0 ; i < pq.size(); i++ ) {
+            if (i == 0) {
+                root = new ListNode(pq.poll());
+                current = root;
+            } else {
+                temp = new ListNode(pq.poll());
+                current.next = temp;
+                current = temp;
+            }
+                
+        }
+        return root;
+    }
     public static void main(String[] args) {
         Solution solution = new Solution();
     }
