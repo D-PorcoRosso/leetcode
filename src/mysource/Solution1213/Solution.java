@@ -17,4 +17,17 @@ public class Solution {
         }
         return false;
     }
+
+    private boolean isExistBinarySearch(int target, int[] array) {
+        int start = 0, end = array.length - 1, mid;
+        
+        while (start <= end) {
+            mid = start + (end - start)/2;
+            if (target == array[mid])
+                return true;
+            if (target > array[mid]) start = mid + 1;
+            else end = mid - 1;
+        }
+        return false;
+    }
 }
