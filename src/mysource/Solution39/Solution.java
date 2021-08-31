@@ -32,6 +32,26 @@ class Solution {
         return null;
     }
 
+    public List<List<Integer>> combinationSum_2021(int[] candidates, int target) {
+        LinkedList<Integer> tempResult = new LinkedList<>();
+        List<List<Integer>> results = new ArrayList<>();
+        backtrack(target, tempResult, 0, candidates, results);
+        return results;
+    }
+    
+    private void backtrack(int target, LinkedList<Integer> tempResult, int start, int[] candidates, List<List<Integer>> results) {
+        if (target == 0) {
+            results.add(new ArrayList<Integer>(tempResult));
+        }
+        if (target < 0)
+            return;
+        for ( int i = start ; i < candidates.length ; i++ ) {
+            tempResult.add(candidates[i]);
+            backtrack(target - candidates[i], tempResult, i, candidates, results);
+            tempResult.removeLast();
+        }
+    }
+
     public static void main(String[] args) {
         Solution solution = new Solution();
         int[] test1 = {2,3,6,7};
