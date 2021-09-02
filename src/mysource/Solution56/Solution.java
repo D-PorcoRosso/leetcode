@@ -54,6 +54,29 @@ class Solution {
         return result;
     }
 
+    public int[][] merge_2021(int[][] intervals) {
+        List<int[]> results = new ArrayList<>();
+        Arrays.sort(intervals, (a,b) -> Integer.compare(a[0],b[0]));
+        int local_min = intervals[0][0], local_max = intervals[0][1];
+        for (int i = 1 ; i < intervals.length ; i++) {
+            if (intervals[i][0] >= local_min && intervals[i][0] <= local_max) {
+                local_max = local_max >= intervals[i][1] ? local_max : intervals[i][1];
+            } else {
+                int[] result = new int[2];
+                result[0] = local_min;
+                result[1] = local_max;
+                results.add(result);
+                local_min = intervals[i][0];
+                local_max = intervals[i][1];
+            }
+        }
+        int[] result = new int[2];
+        result[0] = local_min;
+        result[1] = local_max;
+        results.add(result);
+        return results.toArray(new int[results.size()][]);
+    }
+
     public static void main(String[] args) {
         Solution solution = new Solution();
         List<Interval> test1 = new ArrayList<>();
