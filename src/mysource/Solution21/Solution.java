@@ -42,6 +42,41 @@ class Solution {
         return q;
     }
 
+    public ListNode mergeTwoLists_2021(ListNode L1, ListNode L2) {
+        if (L1 == null && L2 == null)
+            return null;
+        if (L1 == null)
+            return L2;
+        if (L2 == null)
+            return L1;
+        ListNode p, q;
+        if (L1.val > L2.val) {
+            p = q = L2;
+            L2 = L2.next;
+        } else {
+            p = q = L1;
+            L1 = L1.next;
+        }
+        while(L1 != null && L2 != null) {
+            if (L1.val > L2.val) {
+                
+                if (L2.next == null) {
+                    L2.next = L1;
+                    break;
+                }
+                L2 = L2.next;
+            } else {
+                result = L1;
+                if (L1.next == null) {
+                    L1.next = L2;
+                    break;
+                }
+                L1 = L1.next;
+            }
+        }
+        return result;
+    }
+
     public static void main(String[] args) {
         Solution solution = new Solution();
         ListNode one = new ListNode(2);
@@ -59,7 +94,7 @@ class Solution {
         one_1.next = two_1;
         two_1.next = three_1;
         three_1.next = null;
-        ListNode result = solution.mergeTwoLists(one, one_1);
+        ListNode result = solution.mergeTwoLists_2021(one, one_1);
 
         while (result != null) {
             System.out.println(result.val);
