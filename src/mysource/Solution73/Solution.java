@@ -69,6 +69,28 @@ class Solution {
         } 
     }
 
+    public void setZeroes_2021(int[][] matrix) {
+        List<int[]> zeros = new ArrayList<>();
+        for ( int i = 0 ; i < matrix.length ; i++ ) {
+            for ( int j = 0 ; j < matrix[0].length ; j++ ) {
+                if (matrix[i][j] == 0) {
+                    int[] temp = new int[2];
+                    temp[0] = i;
+                    temp[1] = j;
+                    zeros.add(temp);
+                }
+            }
+        }
+        for ( int[] zero : zeros ) {
+            for (int i = 0 ; i < matrix[0].length ; i++) {
+                matrix[zero[0]][i] = 0;
+            }
+            for (int i = 0 ; i < matrix.length ; i++) {
+                matrix[i][zero[1]] = 0;
+            }
+        }
+    }
+
     public static void main(String[] args) {
         Solution solution = new Solution();
         int[][] test1 = {
