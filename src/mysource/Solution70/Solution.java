@@ -34,6 +34,23 @@ class Solution {
         return count;
     }
 
+    public int climbStairs_2021(int n) {
+        int[] dp = new int[n];
+        return steps(dp, n);
+    }
+    private int steps(int[] dp, int n) {
+        if (n == 0)
+            return 0;
+        if (n == 1)
+            return 1;
+        if (n == 2)
+            return 2;
+        if (dp[n-1] == 0) {
+            dp[n-1] = steps(dp, n-1)+steps(dp, n-2);
+        }
+        return dp[n-1];
+    }
+
     public static void main(String[] args) {
         Solution solution = new Solution();
         System.out.println(solution.climbStairs(5));
