@@ -1,6 +1,24 @@
 package mysource.Solution125;
 
 class Solution {
+    public boolean isPalindrome_2021(String s) {
+        s = s.toLowerCase();
+        List<Character> trimArray = new ArrayList<>();
+        for ( int i = 0 ; i < s.length() ; i++ ) {
+            char c = s.charAt(i);
+            if ( ('a' <= c && c <= 'z') || ('0' <= c && c <= '9')) {
+                trimArray.add(c);
+            }
+        }
+        Character[] target = new Character[trimArray.size()];
+        target = trimArray.toArray(target);
+        for ( int i = 0 ; i < target.length/2 ; i++ ) {
+            if ( target[i] != target[target.length - 1 - i] )
+                return false;
+        }
+        return true;
+    }
+
     public boolean isPalindrome(String s) {
         
         char[] array = s.toCharArray();
