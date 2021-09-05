@@ -8,6 +8,16 @@ class Solution {
         TreeNode(int x) {val = x;}
     }
 
+    public int maxDepth_2021(TreeNode root) {
+        return DFS(root);
+    }
+    private int DFS(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        return 1+ Math.max(DFS(root.left), DFS(root.right));
+    }
+
     public int maxDepth(TreeNode root) {
         if ( root != null ) {
             if ( root.left == null && root.right == null)
