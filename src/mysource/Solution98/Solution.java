@@ -11,6 +11,22 @@ class Solution {
         }
     }
 
+    public boolean isValidBST_2021(TreeNode root) {
+        return isValid(root, Long.MIN_VALUE, Long.MAX_VALUE);
+    }
+    public boolean isValid(TreeNode root, long low, long high) {
+        if (root == null)
+            return true;
+        long currentVal = (long)root.val;
+        if (currentVal <= low || currentVal >= high)
+            return false;
+        if (root.right != null && currentVal >= root.right.val )
+            return false;
+        if (root.left != null && currentVal <= root.left.val)
+            return false;
+        return isValid(root.right, currentVal, high) && isValid(root.left, low, currentVal);
+    }
+
     public boolean isValidBST(TreeNode root) {
         return isValidBSTWithValue(root,null, null);
     }
