@@ -11,6 +11,19 @@ class Solution {
         }
     }
 
+    public boolean isSameTree_2021(TreeNode p, TreeNode q) {
+        if (p == null && q == null)
+            return true;
+        else {
+            if ((p == null && q != null) || (p != null && q == null))
+                return false;
+            if (p.val == q.val)
+                return isSameTree(p.right, q.right) && isSameTree(p.left, q.left);
+            return false;
+        }
+        
+    }
+
     public boolean isSameTree(TreeNode p, TreeNode q) {
         if ( p == null && q == null )
             return true;
