@@ -15,6 +15,22 @@ class Solution {
         return diff;
     }
 
+    public int maxProfit_2021(int[] prices) {
+        int max = 0;
+        for ( int i = 0, j = 1 ; i < prices.length && j < prices.length ; ) {
+            if ( prices[i] > prices[j] ) {
+                i = j;
+                j = i + 1;
+            } else {
+                if (max < prices[j] - prices[i]) {
+                    max = prices[j] - prices[i];
+                }
+                j++;
+            }
+        }
+        return max;
+    }
+
     public static void main(String[] args) {
         Solution solution = new Solution();
         int[] test1 = {7,1,5,3,6,4};
