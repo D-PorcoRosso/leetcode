@@ -30,6 +30,21 @@ class Solution {
         return hasCycle;
     }
 
+    public boolean hasCycle_2021(ListNode head) {
+        if (head == null || head.next == null)
+            return false;
+        ListNode p = head, q = head.next;
+        while (p != null && q != null) {
+            if (p.val == q.val && p == q)
+                return true;
+            p = p.next;
+            if (q.next == null)
+                return false;
+            q = q.next.next;
+        }
+        return false;
+    }
+
     public static void main(String[] args) {
         Solution solution = new Solution();
         ListNode one = new ListNode(1);
