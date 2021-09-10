@@ -7,6 +7,17 @@ class Solution {
         ListNode(int x) {val = x;}
     }
 
+    public ListNode reverseList_2021(ListNode head) {
+        ListNode p = head,q = head,r = null;
+        while(p != null) {
+            p = p.next;
+            q.next = r;
+            r = q;
+            q = p;
+        }
+        return r;
+    }
+
     public ListNode reverseList(ListNode head) {
         ListNode p = null, q = head, temp = null;
         while ( q != null ) {
