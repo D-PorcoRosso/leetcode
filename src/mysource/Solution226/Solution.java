@@ -21,6 +21,21 @@ class Solution {
         return root;
     }
 
+    public TreeNode invertTree_2021(TreeNode root) {
+        invert(root);
+        return root;
+    }
+    
+    private void invert(TreeNode node) {
+        if (node == null)
+            return;
+        TreeNode temp = node.left;
+        node.left = node.right;
+        node.right = temp;
+        invert(node.left);
+        invert(node.right);
+    }
+
     public static void main(String[] args) {
         Solution solution = new Solution();
         TreeNode one = new TreeNode(4);
