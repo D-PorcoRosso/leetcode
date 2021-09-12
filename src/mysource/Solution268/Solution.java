@@ -13,4 +13,12 @@ public class Solution {
         }
         return -1;
     }
+
+    public int missingNumber_o1(int[] nums) {
+        int totalSum = (nums.length+1)*nums.length/2;
+        for ( int i = 0 ; i < nums.length ; i++ ) {
+            totalSum -= nums[i];
+        }
+        return totalSum;
+    }
 }
