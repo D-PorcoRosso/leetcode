@@ -5,6 +5,16 @@ import java.util.Map;
 
 class Solution {
 
+    public boolean isAnagram_2021_sort(String s, String t) {
+        if (s.length() != t.length())
+            return false;
+        char[] sArray = s.toCharArray();
+        char[] tArray = t.toCharArray();
+        Arrays.sort(sArray);
+        Arrays.sort(tArray);
+        return Arrays.equals(sArray, tArray);
+    }
+
     public boolean isAnagram_2021(String s, String t) {
         char[] sArray = s.toCharArray();
         char[] tArray = t.toCharArray();
