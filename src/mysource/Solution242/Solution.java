@@ -4,6 +4,28 @@ import java.util.HashMap;
 import java.util.Map;
 
 class Solution {
+
+    public boolean isAnagram_2021(String s, String t) {
+        char[] sArray = s.toCharArray();
+        char[] tArray = t.toCharArray();
+        HashMap<Character, Integer> sMap = countMap(sArray);
+        HashMap<Character, Integer> tMap = countMap(tArray);
+        return sMap.equals(tMap);
+    }
+    
+    private HashMap<Character, Integer> countMap(char[] array) {
+        HashMap<Character, Integer> mapping = new HashMap<>();
+        for ( int i = 0 ; i < array.length ; i++ ) {
+            Integer count = mapping.get(array[i]);
+            if (count == null) {
+                mapping.put(array[i], 1);
+            } else {
+                mapping.put(array[i], ++count);
+            }
+        }
+        return mapping;
+    }
+
     public boolean isAnagram(String s, String t) {
         System.out.println(s.length()+":"+t.length());
         if ( s.length() != t.length() )
