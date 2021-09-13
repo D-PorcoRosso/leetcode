@@ -3,6 +3,24 @@ package mysource.Solution338;
 import java.util.ArrayList;
 
 class Solution {
+    public int[] countBits_2021(int n) {
+        int[] returnBits = new int[n+1];
+        returnBits[0] = 0;
+        if (n == 0)
+            return returnBits;
+        returnBits[1] = 1;
+        int pow = 1;
+        for ( int i = 2 ; i <= n ; i++ ) {
+            int base = 1 << pow;
+            if (i/base > 1) {
+                ++pow;
+                base = 1 << pow;
+            }
+            returnBits[i] = returnBits[i % (int)base] + 1;
+        }
+        return returnBits;
+    }
+
     public int[] countBits(int num) {
         ArrayList<Integer> result = new ArrayList<>();
         result.add(0);
