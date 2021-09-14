@@ -1,6 +1,16 @@
 package mysource.Solution371;
 
 class Solution {
+    public int getSum_2021(int a, int b) {
+        while(b != 0) {
+            int ans = a^b;
+            int carry = (a&b) << 1;
+            a = ans;
+            b = carry;
+        }
+        return a;
+    }
+
     public int getSum(int a, int b) {
         String tempa = Integer.toBinaryString(a);
         String tempb = Integer.toBinaryString(b);
