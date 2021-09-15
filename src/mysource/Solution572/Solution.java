@@ -8,6 +8,38 @@ class Solution {
         TreeNode(int x) {val = x;}
     }
 
+    public boolean isSubtree_2021(TreeNode root, TreeNode subRoot) {
+        return runAllNode(root, subRoot);
+    }
+    
+    private boolean runAllNode(TreeNode root, TreeNode subRoot) {
+        boolean isSubTree = false;
+        if ( root == null && subRoot == null )
+            return true;
+        if ( root != null && subRoot == null || (root == null && subRoot != null))
+            return false;
+        if (root.val == subRoot.val) {
+            isSubTree = isSubTree | isSubtree(root, subRoot, false);
+        }
+        if (!isSubTree) {
+            isSubTree = isSubTree | runAllNode(root.left, subRoot);
+            isSubTree = isSubTree | runAllNode(root.right, subRoot);
+        }
+        return isSubTree;
+    }
+    
+    private boolean isSubtree(TreeNode root, TreeNode subRoot, boolean isStartSame) {
+        if ( root == null && subRoot == null )
+            return true;
+        if ( root != null && subRoot == null || (root == null && subRoot != null))
+            return false;
+        if ( root.val == subRoot.val) {
+            return isSubtree(root.left, subRoot.left, true) && isSubtree(root.right, subRoot.right, true);
+        } else {
+            return false;
+        }
+    }
+
     public boolean isSubtree(TreeNode s, TreeNode t) {
         if (s == null && t == null)
             return true;
