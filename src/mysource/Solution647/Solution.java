@@ -3,6 +3,30 @@ package mysource.Solution647;
 import java.util.ArrayList;
 
 public class Solution {
+    public int countSubstrings_2021(String s) {
+        char[] str = s.toCharArray();
+        int start = 0, end = 0, index = 1, count = 0;
+        while (index <= str.length) {
+            for ( int i = 0 ; i+index <= str.length; i++ ) {
+                String subS = s.substring(i,i+index);
+                char[] subStr = subS.toCharArray();
+                if (isPalindromicString(subStr))
+                    ++count;
+            }
+            index++;
+        }
+        return count;
+    }
+    
+    private boolean isPalindromicString (char[] array) {
+        int length = array.length;
+        for ( int i = 0 ; i < length/2 ; i++ ) {
+            if (array[i] != array[length-1-i])
+                return false;
+        }
+        return true;
+    }
+
     public int countSubstrings(String s) {
         int length = s.length();
         ArrayList<String> tests = new ArrayList<>();
