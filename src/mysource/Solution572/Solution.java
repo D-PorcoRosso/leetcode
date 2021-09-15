@@ -18,9 +18,7 @@ class Solution {
             return true;
         if ( root != null && subRoot == null || (root == null && subRoot != null))
             return false;
-        if (root.val == subRoot.val) {
-            isSubTree = isSubTree | isSubtree(root, subRoot, false);
-        }
+        if (isSubtree(root, subRoot, false)) return true;
         if (!isSubTree) {
             isSubTree = isSubTree | runAllNode(root.left, subRoot);
             isSubTree = isSubTree | runAllNode(root.right, subRoot);
