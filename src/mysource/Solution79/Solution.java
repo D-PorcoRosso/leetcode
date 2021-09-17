@@ -2,42 +2,41 @@ package mysource.Solution79;
 
 class Solution {
     public boolean exist(char[][] board, String word) {
-        //boolean[][] visited = ;
-        for ( int i = 0 ; i < board.length ; i++ )
+        boolean[][] visited = new boolean[board.length][board[0].length];
+        char[] target = word.toCharArray();
+        for ( int i = 0 ; i < board.length ; i++ ) {
             for ( int j = 0 ; j < board[0].length ; j++ ) {
-                System.out.println("loop:");
-                if (isExist(new boolean[board.length][board[0].length], board, word, i,j,0))
+                clear(visited);
+                if (isVisited(board, visited, target, j, i, 0))
                     return true;
             }
-
+        }
         return false;
     }
-
-    private boolean isExist(boolean[][] visited, char[][] board, String word, int i, int j, int index) {
-        if ( i >= 0 && i < board.length && j >= 0 && j < board[0].length ) {
-            System.out.println(i+":"+j+":"+board[i][j]+" visit:"+visited[i][j]+" index:"+index);
-            if ( visited[i][j] )
-                return false;
-            if ( index == word.length() - 1 ) {
-                if ( board[i][j] == word.charAt(index) )
-                    return true;
-                else
-                    return false;
-            } else {
-                if ( board[i][j] == word.charAt(index) ) {
-                    index++;
-                    boolean hasVisit = isExist(visited, board, word, i, j+1, index) || 
-                        isExist(visited, board, word, i, j-1, index) || 
-                        isExist(visited, board, word, i+1, j, index) || 
-                        isExist(visited, board, word, i-1, j, index);
-                    if ( hasVisit ) visited[i][j] = true;
-                    return hasVisit;
-                } else {
-                    return false;
-                }
+    
+    private void clear(boolean[][] visited) {
+        for ( int i = 0 ; i < visited.length ; i++ ) {
+            for ( int j = 0 ; j < visited[0].length ; j++ ) {
+                visited[i][j] = false;
             }
-        } else 
+        }
+    }
+
+    private boolean isVisited(char[][] board, boolean[][] visited, char[] target, int x, int y, int index ) {
+        if ( x < 0 || x > board[0].length - 1 || y < 0 || y > board.length - 1 || visited[y][x]  || index > target.length-1 || target[index] != board[y][x] )
             return false;
+        if (index == target.length-1 && target[index] == board[y][x])
+            return true;
+        visited[y][x] = true;
+        boolean exist = false;
+        index++;
+        exist |= isVisited(board, visited, target, x + 1, y, index);
+        exist |= isVisited(board, visited, target, x - 1, y, index);
+        exist |= isVisited(board, visited, target, x , y + 1, index);
+        exist |= isVisited(board, visited, target, x , y - 1, index);
+        if (!exist)
+            visited[y][x] = false;
+        return exist;
     }
 
     public static void main(String[] args) {
