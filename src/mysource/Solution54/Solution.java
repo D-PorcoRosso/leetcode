@@ -4,6 +4,61 @@ import java.util.ArrayList;
 import java.util.List;
 
 class Solution {
+    public List<Integer> spiralOrder_2021(int[][] matrix) {
+        List<Integer> result = new ArrayList<>();
+        int i=0, j=0, howmany = matrix.length*matrix[0].length;
+        int direction = 0;
+        int boundary_x = matrix[0].length;
+        int boundary_init_x = 0;
+        int boundary_y = matrix.length;
+        int boundary_init_y = matrix.length == 1 ? 0 : 1;
+        while(howmany != 0) {
+            
+            result.add(matrix[i][j]);
+            howmany--;
+            switch(direction) {
+                case 0://right
+                    if (j == boundary_x-1) {
+                        direction = 1;
+                        boundary_x--;
+                        i++;
+                    } else {
+                        j++;
+                    }
+                    break;
+                case 1://down
+                    if (i == boundary_y-1) {
+                        direction = 2;
+                        boundary_y--;
+                        j--;
+                    } else {
+                        i++;
+                    }
+                    break;
+                case 2://left
+                    if (j == boundary_init_x) {
+                        direction = 3;
+                        boundary_init_x++;
+                        i--;
+                    } else {
+                        j--;
+                    }
+                    break;
+                case 3://up
+                    if (i == boundary_init_y) {
+                        direction = 0;
+                        boundary_init_y++;
+                        j++;
+                    } else {
+                        i--;
+                    }
+                    break;
+            }
+        }
+        return result;
+    }
+
+
     public List<Integer> spiralOrder(int[][] matrix) {
         List<Integer> result = new ArrayList<>();
         int i = 0 , j = 0 , direction = 1;
