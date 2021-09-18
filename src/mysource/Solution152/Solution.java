@@ -1,6 +1,20 @@
 package mysource.Solution152;
 
 public class Solution {
+    public int maxProduct_2021_o_n(int[] nums) {
+        if (nums.length == 0)
+            return 0;
+        int localMax = nums[0], localMin = nums[0], max = localMax;
+        for ( int i = 1 ; i < nums.length ; i++ ) {
+            int temp = Math.max(nums[i], Math.max(nums[i]*localMax, nums[i]*localMin));
+            localMin = Math.min(nums[i], Math.min(nums[i]*localMax, nums[i]*localMin));
+            localMax = temp;
+            if (localMax > max)
+                max = localMax;
+        }
+        return max;
+    }
+
     public int maxProduct_2021(int[] nums) {
         int product = 1, maxProduct = Integer.MIN_VALUE;
         for ( int i = 0 ; i < nums.length ; i++ ) {
