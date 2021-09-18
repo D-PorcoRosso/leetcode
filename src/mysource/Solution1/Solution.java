@@ -3,6 +3,25 @@ package mysource.Solution1;
 import java.util.Arrays;
 
 class Solution {
+    public int[] twoSum_2021_250(int[] nums, int target) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for ( int i = 0 ; i < nums.length ; i++ ) {
+            map.put(nums[i], i);
+        }
+        
+        for ( int i = 0 ; i < nums.length ; i++ ) {
+            if (map.get(target-nums[i]) != null) {
+                if (map.get(target-nums[i]) == i)
+                    continue;
+                int[] temp = new int[2];
+                temp[0] = i;
+                temp[1] = map.get(target-nums[i]);
+                return temp;
+            }
+        }
+        return new int[2];
+    }
+
     public int[] twoSum(int[] nums, int target) {
         int[] result = { 0, 0};
         for ( int i = 0 ; i < nums.length ; i++ ) {
