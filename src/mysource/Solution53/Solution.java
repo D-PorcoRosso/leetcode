@@ -11,6 +11,19 @@ class Solution {
         return maxSum;
     }
 
+    public int maxSubArray_2021(int[] nums) {
+        int sum = Integer.MIN_VALUE;
+        for ( int i = 0 ; i < nums.length ; i++ ) {
+            int currentSum = 0;
+            for ( int j = i ; j < nums.length ; j++ ) {
+                currentSum += nums[j];
+                if ( currentSum > sum)
+                    sum = currentSum;
+            }
+        }
+        return sum;
+    }
+
     public static void main(String[] args) {
         Solution solution = new Solution();
         int[] t1 = {-2,1,-3,4,-1,2,1,-5,4};
