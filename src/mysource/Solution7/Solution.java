@@ -2,6 +2,31 @@ package mysource.Solution7;
 
 import java.util.ArrayList;
 class Solution {
+    public int reverse_2021(int x) {
+        if (x > Integer.MAX_VALUE || x < Integer.MIN_VALUE) {
+            return 0;
+        }
+        List<Integer> numbers = new ArrayList<>();
+        
+        boolean isNag = x > 0 ? false : true;
+        
+        int count = 0;
+        while(x != 0) {
+            numbers.add(x % 10);
+            x = x/10;
+            count++;
+        }
+        count--;
+
+        int returnNum = 0;
+        for ( int num : numbers ) {
+            returnNum += num*Math.pow(10, count--);
+            if (returnNum >= Integer.MAX_VALUE || returnNum <= Integer.MIN_VALUE)
+                return 0;
+        }
+        return returnNum;
+    }
+
     public int reverse(int x) { 
         ArrayList<Integer> reverse  = new ArrayList<>();
         boolean isNeg = false;
