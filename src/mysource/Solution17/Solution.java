@@ -6,6 +6,41 @@ import java.util.List;
 
 class Solution {
 
+    public List<String> letterCombinations_2021(String digits) {
+        if (digits.length() == 0)
+            return new ArrayList<>();
+        
+        HashMap<Character, List<String>> mapping = new HashMap<>();
+        mapping.put('2',new ArrayList<>(Arrays.asList("a","b","c")));
+        mapping.put('3',new ArrayList<>(Arrays.asList("d","e","f")));
+        mapping.put('4',new ArrayList<>(Arrays.asList("g","h","i")));
+        mapping.put('5',new ArrayList<>(Arrays.asList("j","k","l")));
+        mapping.put('6',new ArrayList<>(Arrays.asList("m","n","o")));
+        mapping.put('7',new ArrayList<>(Arrays.asList("p","q","r","s")));
+        mapping.put('8',new ArrayList<>(Arrays.asList("t","u","v")));
+        mapping.put('9',new ArrayList<>(Arrays.asList("w","x","y","z")));
+        
+        int count = digits.length();
+        char[] digitsArray = digits.toCharArray();
+        
+        if (count == 1)
+            return mapping.get(digitsArray[0]);
+        
+        List<String> results = mapping.get(digitsArray[0]);
+        int index = 1;
+        while(index < count) {
+            List<String> tempResult = new ArrayList<>();
+            for ( String result : results ) {
+                for ( String target : mapping.get(digitsArray[index]) ) {
+                    tempResult.add(result+target);
+                }
+            }
+            results = tempResult;
+            index++;
+        }
+        return results;
+    }
+
     public List<String> letterCombinations(String digits) {
         HashMap<Integer, String> mapping = new HashMap<>();
         List<String> output = new ArrayList<>();
