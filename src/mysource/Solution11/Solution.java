@@ -1,6 +1,25 @@
 package mysource.Solution11;
 
 class Solution {
+    public int maxArea_2021_o_n(int[] height) {
+        int max = -1;
+        int i = 0, j = height.length - 1;
+        while( i < j ) {
+            max = Math.max(max, Math.min(height[i], height[j])*(j-i));
+            if (height[i] < height[j])
+                i++;
+            else
+                j--;
+        }
+        // for ( int i = 0 ; i < height.length ; i++ ) {
+        //     for ( int j = i+1 ; j < height.length ; j++ ){
+        //         max = Math.max(max, Math.min(height[i], height[j])*(j-i));
+        //     }
+        // }
+        return max;
+    }
+
+
     // o(n)
     public int maxArea(int[] height) {
         int left = 0, right = height.length-1;
