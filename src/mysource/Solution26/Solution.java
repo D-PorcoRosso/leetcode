@@ -1,6 +1,29 @@
 package mysource.Solution26;
 
 class Solution {
+    public int removeDuplicates_2021_250(int[] nums) {
+        if (nums.length == 0)
+            return 0;
+        if (nums.length == 1)
+            return 1;
+        int targetIndex = 0, target = nums[0], count = 1, j = 1;
+        boolean isDuplicate = false;
+        for ( int i = 1 ; i < nums.length ; i++ ) {
+            if (target == nums[i] ) {
+                if (!isDuplicate) {
+                    isDuplicate = true;
+                }
+            } else {
+                nums[j] = nums[i];
+                target = nums[i];
+                count++;
+                j++;
+                isDuplicate = false;
+            }
+        }
+        return count;
+    }
+
     public int removeDuplicates(int[] nums) {
         if ( nums.length == 0 )
             return 0;
