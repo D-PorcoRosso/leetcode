@@ -87,6 +87,50 @@ class Solution {
         return false;
     }
 
+    public boolean isValid_2021_250(String s) {
+        Stack<Character> stack = new Stack<>();
+
+        char[] str = s.toCharArray();
+        for ( int i = 0 ; i < str.length ; i++ ) {
+            char c = ' ';
+            switch (str[i]) {
+                case '(':
+                    stack.push('(');
+                    break;
+                case ')':
+                    if (stack.size() == 0)
+                        return false;
+                    c = stack.pop();
+                    if (c != '(')
+                        return false;
+                    break;
+                case '[':
+                    stack.push('[');
+                    break;
+                case ']':
+                    if (stack.size() == 0)
+                        return false;
+                    c = stack.pop();
+                    if (c != '[')
+                        return false;
+                    break;
+                case '{':
+                    stack.push('{');
+                    break;
+                case '}':
+                    if (stack.size() == 0)
+                        return false;
+                    c = stack.pop();
+                    if (c != '{')
+                        return false;
+                    break;
+            }
+        }
+        if (stack.size() == 0)
+            return true;
+        return false;
+    }
+
     public static void main(String[] args) {
         Solution solution = new Solution();
         String s1 = "asd(){";
