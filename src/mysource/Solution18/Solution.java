@@ -6,6 +6,34 @@ import java.util.List;
 
 class Solution {
 
+    public List<List<Integer>> fourSum_2021(int[] nums, int target) {
+        Arrays.sort(nums);
+        int length = nums.length;
+        boolean findEqual = false;
+        List<List<Integer>> results = new ArrayList<>();
+        for ( int i = 0 ; i < length ; i++ ) {
+            for ( int j = i+1 ; j < length ; j++ ) {
+                for ( int k = j+1 ; k < length ; k++ ) {
+                    for ( int l = k+1 ; l < length ; l++ ) {
+                        if (nums[l] == nums[l-1] && findEqual) {
+                            continue;
+                        }
+                        if (nums[i]+nums[j]+nums[k]+nums[l] == target) {
+                            findEqual = true;
+                            List<Integer> result = Arrays.asList(nums[i], nums[j], nums[k], nums[l]);
+                            if (!results.contains(result)) {
+                                results.add(result);
+                                break;
+                            }
+                        }
+                    }
+                    findEqual = false;
+                }
+            }
+        }
+        return results;
+    }
+
     public List<List<Integer>> fourSum(int[] nums, int target) {
         int length = nums.length;
         Arrays.sort(nums);
