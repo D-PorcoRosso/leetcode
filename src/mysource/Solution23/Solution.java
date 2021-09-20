@@ -72,8 +72,8 @@ class Solution {
             }
         }
         ListNode current = null, temp;
-        for ( int i = 0 ; i < pq.size(); i++ ) {
-            if (i == 0) {
+        while(!pq.isEmpty()) {
+            if (root == null) {
                 root = new ListNode(pq.poll());
                 current = root;
             } else {
@@ -82,6 +82,29 @@ class Solution {
                 current = temp;
             }
                 
+        }
+        return root;
+    }
+
+    public ListNode mergeKLists_2021_250(ListNode[] lists) {
+        PriorityQueue<Integer> queue = new PriorityQueue<>();
+        for ( ListNode node : lists ) {
+            while (node != null) {
+                queue.offer(node.val);
+                node = node.next;
+            }
+        }
+        
+        ListNode root = null, temp = null;
+        while (queue.size() != 0) {
+            if (root == null) {
+                temp = new ListNode(queue.poll());
+                root = temp;
+            } else {
+                ListNode node = new ListNode(queue.poll());
+                temp.next = node;
+                temp = node;
+            }
         }
         return root;
     }
