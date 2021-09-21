@@ -2,6 +2,30 @@ package mysource.Solution28;
 
 class Solution {
 
+    public int strStr_2021_250(String haystack, String needle) {
+        if (needle.length() == 0)
+            return 0;
+        if (needle.length() > haystack.length())
+            return -1;
+        char[] haystackStr = haystack.toCharArray();
+        char[] needleStr = needle.toCharArray();
+        for ( int i = 0 ; i < haystackStr.length ; i++ ) {
+            if (haystackStr[i] == needleStr[0]) {
+                for ( int j = 0 ; j < needleStr.length ; j++ ) {
+                    if (i+j < haystackStr.length) {
+                        if (haystackStr[i+j] == needleStr[j]) {
+                            if (j == needleStr.length - 1)
+                                return i;
+                        } else {
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        return -1;
+    }
+
     public int strStr_by_indexof(String haystack, String needle) {
         return haystack.indexOf(needle);
     }
