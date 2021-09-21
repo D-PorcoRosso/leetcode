@@ -1,6 +1,48 @@
 package mysource.Solution29;
 
 class Solution {
+    public int divide_2021_250(int dividend, int divisor) {
+        if (dividend == 0)
+            return 0;
+        int count = 0;
+        if (dividend == Integer.MIN_VALUE) {
+            if (divisor == -1)
+                return Integer.MAX_VALUE;
+            else if (divisor == 1)
+                return Integer.MIN_VALUE;
+            if (divisor > 0)
+                dividend = dividend + divisor;
+            else
+                dividend = dividend - divisor;
+            count++;
+        }
+        
+        boolean isNag = dividend > 0 ? false : true;
+        if (isNag) {
+            dividend = 0 - dividend;
+            if(divisor < 0) {
+                divisor = 0 - divisor;
+                isNag = false;  
+            } else
+                isNag = true;
+        } else {
+            if(divisor < 0) {
+                divisor = 0 - divisor;
+                isNag = true;  
+            } else
+                isNag = false;
+        }
+        
+        while (dividend >= 0) {
+            dividend -= divisor;
+            if (dividend >= 0)
+                count++;
+        }
+        if (isNag)
+            return 0-count;
+        return count;
+    }
+
     public int divide(int dividend, int divisor) {
         if ( dividend == Integer.MIN_VALUE && divisor == -1)
             return Integer.MAX_VALUE;
