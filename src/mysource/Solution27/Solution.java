@@ -1,6 +1,31 @@
 package mysource.Solution27;
 
 class Solution {
+    public int removeElement_2021_250(int[] nums, int val) {
+        int count = 0, j = nums.length - 1;
+        for ( int i = 0 ; i < nums.length ; i++ ) {
+            if (nums[i] == val) {
+                for ( ; j >=0  ; j-- ) {
+                    if (nums[j] != val) {
+                        int temp = nums[i];
+                        nums[i] = nums[j];
+                        nums[j] = temp;
+                        count++;
+                        j--;
+                        break;
+                    } else {
+                        count++;
+                    }
+                    if ( j == i)
+                        break;
+                }
+            }
+            if ( j == i)
+                break;
+        }
+        return nums.length - count;
+    }
+
     public int removeElement(int[] nums, int val) {
         int index = 0;
         int count = 0;
