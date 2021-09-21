@@ -5,7 +5,14 @@ public class Solution {
         int index = 0, length = 0;
         while (index < s.length()) {
             for ( int i = index + 2 ; i <= s.length() ; i+=2 ) {
-                char[] temp = s.substring(index, i).toCharArray();
+                if ((i-index) < length) {
+                    continue;
+                }
+                String substring = s.substring(index, i);
+                if (substring.startsWith(")")) {
+                    break;
+                }
+                char[] temp = substring.toCharArray();
                 if (isValid(temp)) {
                     if (temp.length > length) {
                         length = temp.length;
