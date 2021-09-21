@@ -1,15 +1,39 @@
 package mysource.Solution31;
 
 class Solution {
-    public void nextPermutation(int[] nums) {
-        int length = nums.length;
-        
-        
-        for ( int i = 0; i < length/2 ; i++ ) {
-            int temp = nums[i];
-            nums[i] = nums[length-i-1];
-            nums[length-i-1] = temp;
+    public void nextPermutation_2021_250(int[] nums) {
+        int minIndex = -1;
+        for ( int i = nums.length - 2; i >= 0 ; i-- ) {
+            if (nums[i] < nums[i+1]) {
+                int localMin = Integer.MAX_VALUE;
+                for ( int j = i+1 ; j < nums.length ; j++ ) {
+                    if ( nums[j] > nums[i] && localMin >= nums[j] ) {
+                        localMin = nums[j];
+                        minIndex = j;
+                    }
+                }
+                swap(nums, i, minIndex);
+                minIndex = i;
+                break;
+            }
         }
+        reverse(nums, minIndex+1);
+    }
+    
+    private void reverse(int[] nums, int start) {
+        int end = nums.length - 1;
+        while(start < end) {
+            swap(nums, start, end);
+            start++;
+            end--;
+        }
+    }
+    
+    
+    private void swap(int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
     }
 
     public static void main(String[] args) {
