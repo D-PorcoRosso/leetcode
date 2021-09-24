@@ -3,6 +3,47 @@ package mysource.Solution36;
 import java.util.HashSet;
 
 class Solution {
+    public boolean isValidSudoku_2021_250(char[][] board) {
+        List<Character> container = new ArrayList<>();
+        for ( int i = 0 ; i < board.length ; i++ ) {
+            for ( int j = 0 ; j < board[0].length ; j++ ) {
+                if (board[i][j] == '.')
+                    continue;
+                if (container.contains(board[i][j]))
+                    return false;
+                container.add(board[i][j]);
+            }
+            container.clear();
+        }
+        container.clear();
+        for ( int i = 0 ; i < board[0].length ; i++ ) {
+            for ( int j = 0 ; j < board.length ; j++ ) {
+                if (board[j][i] == '.')
+                    continue;
+                if (container.contains(board[j][i]))
+                    return false;
+                container.add(board[j][i]);
+            }
+            container.clear();
+        }
+        container.clear();
+        for ( int i = 0 ; i < board.length ; i+=3 ) {
+            for ( int j = 0 ; j < board[0].length ; j+=3 ) {
+                for ( int k = i ; k < i+3 ; k++ ) {
+                    for ( int l = j ; l < j+3 ; l++ ) {
+                        if (board[k][l] == '.')
+                            continue;
+                        if (container.contains(board[k][l]))
+                            return false;
+                        container.add(board[k][l]);
+                    }
+                }
+                container.clear();
+            }
+        }
+        return true;
+    }
+
     public boolean isValidSudoku(char[][] board) {
         HashSet<Character> mapping = new HashSet<>();
         for ( int i = 0 ; i < 9 ; i++ ) {
