@@ -10,6 +10,28 @@ class Solution {
         return nums.length;
     }
 
+    public int searchInsert_2021_250(int[] nums, int target) {
+        return binarySearch(nums, target, 0, nums.length-1);
+    }
+    
+    private int binarySearch(int[] nums, int target, int start, int end) {
+        int mid = -1;
+        while (start <= end) {
+            mid = (end-start)/2 + start;
+            if (nums[mid] == target) {
+                return mid;
+            } else if (nums[mid] < target) {
+                start = mid + 1;
+            } else {
+                end = mid - 1;
+            }
+        }
+        if (nums[mid] > target) {
+            return mid;
+        }
+        return mid+1;
+    }
+
     public static void main(String[] args) {
         Solution solution = new Solution();
         int[] t1 = {1,3,5,6};
