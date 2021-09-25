@@ -52,6 +52,30 @@ class Solution {
         }
     }
 
+    public List<List<Integer>> combinationSum_2021_250(int[] candidates, int target) {
+        List<List<Integer>> results = new ArrayList<>();
+    
+        findCombination(candidates, target, 0, results, new ArrayList<>());
+        
+        return results;
+    }
+    
+    //start is prevent 2,3 or 3,2
+    private void findCombination(int[] candidates, int target, int start, List<List<Integer>> results, List<Integer> result) {
+        if (target == 0) {
+            if (!results.contains(result))
+                results.add(new ArrayList<>(result));
+            return;
+        }
+        if (target < 0)
+            return;
+        for ( int i = start ; i < candidates.length ; i++ ) {
+            result.add(candidates[i]);
+            findCombination(candidates, target - candidates[i], i, results, result);
+            result.remove(result.size()-1);
+        }
+    }
+
     public static void main(String[] args) {
         Solution solution = new Solution();
         int[] test1 = {2,3,6,7};
