@@ -11,6 +11,24 @@ class Solution {
         return maxSum;
     }
 
+    public int maxSubArray_2021_250_o_n(int[] nums) {
+        if (nums.length == 1)
+            return nums[0];
+        int max = Integer.MIN_VALUE;
+        for ( int i = 0 ; i < nums.length ; i++ ) {
+            int j = i+1;
+            int sum = nums[i];
+            max = Math.max(max, sum);
+            while(sum > 0 && j < nums.length) {
+                sum+=nums[j];
+                max = Math.max(max, sum);
+                j++;
+            }                
+            i = j-1;
+        }
+        return max;
+    }
+
     public int maxSubArray_2021_o_n(int[] nums) {
         int sum = 0, max = Integer.MIN_VALUE, localMax = Integer.MIN_VALUE;
         for ( int i = 0 ; i < nums.length ; i++ ) {
