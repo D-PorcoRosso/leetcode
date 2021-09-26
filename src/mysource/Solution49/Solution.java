@@ -7,6 +7,29 @@ import java.util.List;
 
 class Solution {
 
+    public List<List<String>> groupAnagrams_2021_250(String[] strs) {
+        List<List<String>> results = new ArrayList<>();
+        HashMap<String, List<String>> mapping = new HashMap<>();
+
+        for (String str : strs) {
+            char[] strArray = str.toCharArray();
+            Arrays.sort(strArray);
+            String key = String.valueOf(strArray);
+            List<String> result = mapping.get(key);
+            if (result == null) {
+                result = new ArrayList<>();
+                mapping.put(key, result);
+            }
+            result.add(str);
+        }
+        
+        for ( Map.Entry< String, List<String>> entry : mapping.entrySet()) {
+            results.add(entry.getValue());
+        }
+        
+        return results;
+    }
+
     public List<List<String>> groupAnagrams(String[] strs) {
         List<List<String>> result = new ArrayList<>();
         HashMap<String , ArrayList<String>> accumulate = new HashMap<>();
