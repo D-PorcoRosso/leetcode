@@ -2,6 +2,26 @@ package mysource.Solution55;
 
 class Solution {
 
+    public boolean canJump_2021_250(int[] nums) {
+        if (nums.length == 1)
+            return true;
+        return steps(nums, 0);
+    }
+    
+    private boolean steps(int[] nums, int index) {
+        if (index == nums.length-1)
+            return true;
+        if (nums[index] == 0)
+            return false;
+        boolean canReach = false;
+        for ( int step = 1 ; step <= nums[index] ; step++) {
+            canReach = canReach | steps(nums, index + step);
+            if (canReach)
+                return true;
+        }
+        return false;
+    }
+
     public boolean canJump(int[] nums) {
         int localMax = 0;
         for ( int i = 0 ; i < nums.length ; i++ ) {
