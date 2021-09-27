@@ -2,6 +2,20 @@ package mysource.Solution55;
 
 class Solution {
 
+    public boolean canJump_2021_250_pass(int[] nums) {
+        if (nums.length == 1)
+            return true;
+
+        int localMax = 0;
+        for (int i = 0 ; i < nums.length ; i++) {
+            --localMax;
+            localMax = Math.max(localMax, nums[i]);
+            if (localMax == 0 && i != nums.length-1)
+                return false;
+        }
+        return true;
+    }
+
     public boolean canJump_2021_250(int[] nums) {
         if (nums.length == 1)
             return true;
