@@ -1,6 +1,68 @@
 package mysource.Solution67;
 
 class Solution {
+    public String addBinary_2021_250(String a, String b) {
+        if (a.length() < b.length()) {
+            String temp = b;
+            b = a;
+            a = temp;
+        }
+        
+        char[] arrayA = a.toCharArray();
+        char[] arrayB = b.toCharArray();
+        
+        boolean carry = false;
+        int bIndex = arrayB.length-1;
+        for ( int i = arrayA.length - 1 ; i >= 0 ; i-- ) {
+            if (bIndex >= 0) {
+                if (arrayB[bIndex] == '1' && arrayA[i] == '1') {
+                    if (carry) {
+                        arrayA[i] = '1';
+                    } else 
+                        arrayA[i] = '0';
+                    carry = true;
+                } else if (arrayB[bIndex] == '0' && arrayA[i] == '0') {
+                    if (carry) {
+                        arrayA[i] = '1';
+                    }
+                    carry = false;
+                } else {
+                    if (carry) {
+                        arrayA[i] = '0';
+                        carry = true;
+                    } else {
+                        arrayA[i] = '1';
+                        carry = false;
+                    }
+                }
+                bIndex--;
+            } else {
+                if (carry) {
+                    if (arrayA[i] == '1')
+                        arrayA[i] = '0';
+                    else {
+                        arrayA[i] = '1';
+                        carry = false;
+                        break;
+                    }
+                } else {
+                    carry = false;
+                    break;
+                }
+            }
+        }
+        if (carry) {
+            char[] result = new char[arrayA.length + 1];
+            result[0] = '1';
+            for ( int i = 0 ; i < arrayA.length ; i++) {
+                result[i+1] = arrayA[i];
+            }
+            return String.valueOf(result);
+        }
+        
+        return String.valueOf(arrayA);
+    }
+
     public String addBinary(String a, String b) {
         int aIndex = a.length() - 1;
         int bIndex = b.length() - 1;
