@@ -1,6 +1,34 @@
 package mysource.Solution64;
 
 class Solution {
+    public int minPathSum_2021_250(int[][] grid) {
+        int[][] dpTable = new int[grid.length][grid[0].length];
+        
+        return findMin(grid, dpTable, 0, 0);
+    }
+    
+    private int findMin(int[][] grid, int[][] dpTable, int i, int j) {
+        if (i == grid.length-1 && j == grid[0].length-1) {
+            dpTable[i][j] = grid[i][j];
+            return dpTable[i][j];
+        }
+        if (i == grid.length-1) {
+            dpTable[i][j] = grid[i][j] + findMin(grid, dpTable, i, j+1);
+            return dpTable[i][j];
+        }
+        
+        if (j == grid[0].length-1) {
+            dpTable[i][j] = grid[i][j] + findMin(grid, dpTable, i+1, j);
+            return dpTable[i][j];
+        }
+
+        if (dpTable[i][j] != 0)
+            return dpTable[i][j];
+        
+        dpTable[i][j] = grid[i][j] + Math.min(findMin(grid, dpTable, i+1, j), findMin(grid, dpTable, i, j+1));
+        return dpTable[i][j];
+    }
+
     // 原來if放在for裡面去init會比單獨init一層來得慢
     public int minPathSum(int[][] grid) {
         int m = grid.length , n = grid[0].length;
