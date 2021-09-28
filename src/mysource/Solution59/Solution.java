@@ -1,6 +1,69 @@
 package mysource.Solution59;
 
 class Solution {
+    public int[][] generateMatrix_2021_250(int n) {
+        int[][] matrix = new int[n][n];
+        boolean[][] visited = new boolean[n][n];
+        
+        if (n == 1) {
+            matrix[0][0] = 1;
+            return matrix;
+        }
+            
+        int count = 1, x = 0, y = 0;
+        int direction = 1; // 1 : > , 2 : v , 3 : < , 4 : ^
+        while (count <= n*n) {
+            matrix[y][x] = count++;
+            visited[y][x] = true;
+            switch(direction) {
+                case 1:
+                    x++;
+                    if (x == n-1)
+                        direction = 2;
+                    if(visited[y][x]) {
+                        direction = 2;
+                        x--;
+                        y++;
+                    }
+                    break;
+                case 2:
+                    y++;
+                    if(visited[y][x]) {
+                        direction = 3;
+                        y--;
+                        x--;
+                    }   
+                    if (y == n-1){
+                        direction = 3;
+                    }
+                    break;
+                case 3:
+                    x--;
+                    if(visited[y][x]) {
+                        direction = 4;
+                        x++;
+                        y--;
+                    }
+                    if (x == 0){
+                        direction = 4;
+                    }
+                    break;
+                case 4:
+                    y--;
+                    if(visited[y][x]){
+                        direction = 1;
+                        y++;
+                        x++;
+                    }
+                    if (y == 0){
+                        direction = 1;
+                    }
+                    break;
+            }
+        }
+        return matrix;
+    }
+
     public int[][] generateMatrix(int n) {
         int[][] martix = new int[n][n];
         int i = 0 , j = 0 , direction = 1;
