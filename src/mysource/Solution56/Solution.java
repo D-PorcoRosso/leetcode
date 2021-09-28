@@ -77,6 +77,40 @@ class Solution {
         return results.toArray(new int[results.size()][]);
     }
 
+    public int[][] merge_2021_250(int[][] intervals) {
+        Arrays.sort(intervals, new Comparator<int[]>(){
+            public int compare(int[] a, int[] b) {
+                return Integer.compare(a[0], b[0]);
+            }
+        });
+        int localMin = intervals[0][0], localMax = intervals[0][1];
+        List<int[]> results = new ArrayList<>();
+        for( int i = 1 ; i < intervals.length ; i++ ) {
+            if ( intervals[i][0] <= localMax) {
+                localMax = Math.max(intervals[i][1], localMax);
+            } else {
+                int[] interval = new int[2];
+                interval[0] = localMin;
+                interval[1] = localMax;
+                results.add(interval);
+                localMin = intervals[i][0];
+                localMax = intervals[i][1];
+            }
+        }
+        int[] interval = new int[2];
+        interval[0] = localMin;
+        interval[1] = localMax;
+        results.add(interval);
+        int[][] intervalResults = new int[results.size()][2];
+        int i = 0;
+        for ( int[] result : results ) {
+            intervalResults[i][0] = result[0];
+            intervalResults[i][1] = result[1];
+            i++;
+        }
+        return intervalResults;
+    }
+
     public static void main(String[] args) {
         Solution solution = new Solution();
         List<Interval> test1 = new ArrayList<>();
