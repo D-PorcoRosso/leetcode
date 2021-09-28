@@ -1,6 +1,36 @@
 package mysource.Solution66;
 
 class Solution {
+    public int[] plusOne_2021_250(int[] digits) {
+        int carry = 0;
+        if (digits[digits.length-1]+1 > 9) {
+            carry = 1;
+            digits[digits.length-1] = 0;
+        } else {
+            ++digits[digits.length-1];
+            return digits;
+        }
+        for ( int i = digits.length -2 ; i >=0 ; i-- ) {
+            if (digits[i]+carry > 9) {
+                carry = 1;
+                digits[i] = 0;
+            } else {
+                digits[i] = digits[i]+carry;
+                carry = 0;
+                break;
+            }
+        }
+        if (carry == 1) {
+            int[] result = new int[digits.length+1];
+            result[0] = 1;
+            for ( int i = 0 ; i < digits.length ; i++) {
+                result[1+i] = digits[i];
+            }
+            return result;
+        }
+        return digits;
+    }
+
     public int[] plusOne(int[] digits) {
         int length = digits.length;
         double result = 0;
