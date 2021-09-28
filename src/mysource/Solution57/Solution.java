@@ -90,4 +90,48 @@ public class Solution {
         
         return results.toArray(new int[results.size()][]);
     }
+
+    public int[][] insert_2021_250(int[][] intervals, int[] newInterval) {
+        
+        int[][] resultIntervals = new int[intervals.length+1][2];
+        for ( int i = 0 ; i < intervals.length ; i++ ) {
+            resultIntervals[i][0] = intervals[i][0];
+            resultIntervals[i][1] = intervals[i][1];
+        }
+        resultIntervals[intervals.length][0] = newInterval[0];
+        resultIntervals[intervals.length][1] = newInterval[1];
+        Arrays.sort(resultIntervals, new Comparator<int[]>(){
+            public int compare(int[]a, int[]b) {
+                return Integer.compare(a[0], b[0]);
+            }
+        });
+        
+        int localMin = resultIntervals[0][0];
+        int localMax = resultIntervals[0][1];
+        List<int[]> temp = new ArrayList<>();
+        for (int i = 1 ; i < resultIntervals.length ; i++) {
+            if (resultIntervals[i][0] <= localMax){
+                localMax = Math.max(resultIntervals[i][1], localMax);
+            } else {
+                int[] interval = new int[2];
+                interval[0] = localMin;
+                interval[1] = localMax;
+                temp.add(interval);
+                localMin = resultIntervals[i][0];
+                localMax = resultIntervals[i][1];
+            }
+        }
+        int[] interval = new int[2];
+        interval[0] = localMin;
+        interval[1] = localMax;
+        temp.add(interval);
+        int[][] intervalResults = new int[temp.size()][2];
+        int i = 0;
+        for ( int[] result : temp ) {
+            intervalResults[i][0] = result[0];
+            intervalResults[i][1] = result[1];
+            i++;
+        }
+        return intervalResults;
+    }
 }
