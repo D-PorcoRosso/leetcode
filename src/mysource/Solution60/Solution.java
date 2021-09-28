@@ -21,6 +21,55 @@ package mysource.Solution60;/*
     }*/
 
 class Solution {
+    public String getPermutation_2021_250(int n, int k) {
+        int[] input = new int[n];
+        for ( int i = 0 ; i < n ; i++ ) {
+            input[i] = i+1;
+        }
+        while(k > 1) {
+            findPermutation(input);
+            k--;
+        }
+        StringBuilder builder = new StringBuilder();
+        for ( int i = 0 ; i < n ; i++ ) {
+            builder.append(input[i]);
+        }
+        
+        return builder.toString();
+    }
+    
+    private void findPermutation(int[] input) {
+        for ( int i = input.length - 2; i >= 0 ; i-- ) {
+            if (input[i] < input[i+1]) {
+                int min = Integer.MAX_VALUE, index = i+1;
+                for ( int j = index ; j < input.length ; j++ ) {
+                    if ( input[i] < input[j] ) {
+                        min = Math.min(input[j], min);
+                        index = j;
+                    }
+                }
+                swap(input, i, index);
+                reverse(input, i+1);
+                break;
+            }
+        }
+    }
+    
+    private void reverse(int[] input, int start) {
+        int j = input.length-1;
+        while (start < j) {
+            swap(input, start, j);
+            start++;
+            j--;
+        }
+    }
+    
+    private void swap(int[] input, int a, int b) {
+        int temp = input[a];
+        input[a] = input[b];
+        input[b] = temp;
+    }
+
     public String getPermutation(int n, int k) {
         StringBuilder builder = new StringBuilder();
         int[] array = new int[n];
