@@ -1,6 +1,31 @@
 package mysource.Solution70;
 
 class Solution {
+
+    public int climbStairs_2021_250(int n) {
+        int[] dpTable = new int[n+1];
+        return climb(dpTable, n);
+    }
+    
+    private int climb(int[] dpTable,  int remainSteps) {
+        if (remainSteps == 0) {
+            dpTable[0] = 0;
+            return dpTable[0];
+        }
+        if (remainSteps == 1) {
+            dpTable[1] = 1;
+            return dpTable[1];
+        }
+        if (remainSteps == 2) {
+            dpTable[2] = 2;
+            return dpTable[2];
+        }
+        if (dpTable[remainSteps] != 0)
+            return dpTable[remainSteps];
+        dpTable[remainSteps] = climb(dpTable, remainSteps-1) + climb(dpTable, remainSteps-2);
+        return dpTable[remainSteps];
+    }
+
     public int climbStairs(int n) {
         return run2(n);
     }
