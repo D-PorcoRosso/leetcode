@@ -4,6 +4,37 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 class Solution {
+
+    public String simplifyPath_2021_250(String path) {
+        Stack<String> stack = new Stack();
+        String[] paths = path.split("/");
+        
+        for ( String p : paths ) {
+            switch(p) {
+                case ".":
+                    continue;
+                case "..":
+                    if (!stack.empty())
+                        stack.pop();
+                    break;
+                case "":
+                    continue;
+                default:
+                    stack.push(p);
+                    break;
+            }
+        }
+        
+        StringBuilder builder = new StringBuilder();
+        if (stack.empty())
+            builder.append("/");
+        for ( String p : stack ) {
+            builder.append("/");
+            builder.append(p);
+        }
+        return builder.toString();
+    }
+
     public String simplifyPath(String path) {
         StringBuilder builder = new StringBuilder();
         Queue<String> folderName = new LinkedList<>();
