@@ -1,6 +1,36 @@
 package mysource.Solution74;
 
 class Solution {
+
+    public boolean searchMatrix_2021_250(int[][] matrix, int target) {
+        int start = 0, end = matrix.length-1, mid = 0;
+        while (start <= end) {
+            mid = (end-start)/2+start;
+            if (matrix[mid][0] == target)
+                return true;
+            else if (matrix[mid][0] < target) {
+                start = mid + 1;
+            } else 
+                end = mid -1;
+        }
+        
+        int targetRow = start == 0 ? 0 : start-1;
+        
+        start = 0;
+        end = matrix[targetRow].length-1;
+        
+        while (start <= end) {
+            mid = (end-start)/2+start;
+            if (matrix[targetRow][mid] == target)
+                return true;
+            else if (matrix[targetRow][mid] < target) {
+                start = mid + 1;
+            } else 
+                end = mid -1;
+        }
+        return false;
+    }
+
     public boolean searchMatrix(int[][] matrix, int target) {
 
         int n = matrix.length;
