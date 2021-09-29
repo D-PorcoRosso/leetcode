@@ -1,6 +1,16 @@
 package mysource.Solution75;
 
 class Solution {
+    public void sortColors_2021_250_bubblesort(int[] nums) {
+
+        for ( int i = 0 ; i < nums.length ; i++ ){
+            for ( int j = 1 ; j < nums.length - i ; j++ ){
+                if (nums[j] < nums[j-1])
+                    swap(nums, j, j-1);
+            }
+        }
+    }
+
     public void sortColors(int[] nums) {
         int i = 0 , j = 0 , k = nums.length-1, temp = 0;
         while ( i <= k ) {
