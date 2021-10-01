@@ -10,6 +10,42 @@ class Solution {
         }
     }
 
+    ListNode returnHead = null;
+    public ListNode deleteDuplicates_2021_250(ListNode head) {
+        if (head == null)
+            return null;
+        if (head.next == null)
+            return head;
+        ListNode root = head;
+        HashMap<Integer, Integer> countMap = new HashMap<>();
+        while (head != null) {
+            Integer count = countMap.get(head.val);
+            if (count == null) {
+                countMap.put(head.val, 1);
+            } else {
+                countMap.put(head.val, ++count);
+            }
+            head = head.next;
+        }
+        head = root;
+        while (head != null) {
+            if (countMap.get(head.val) > 1) {
+                head = head.next;
+            } else {
+                if (returnHead == null) {
+                    returnHead = head;
+                }
+                ListNode temp = head;
+                while(temp.next != null && countMap.get(temp.next.val) > 1) {
+                    temp = temp.next;
+                }
+                head.next = temp.next;
+                head = head.next;
+            }
+        }
+        return returnHead;
+    }
+
     public ListNode deleteDuplicates(ListNode head) {
         ListNode r = null;
         ListNode root = head;
