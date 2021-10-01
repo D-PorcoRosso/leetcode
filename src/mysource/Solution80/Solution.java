@@ -1,6 +1,16 @@
 package mysource.Solution80;
 
 class Solution {
+
+    public int removeDuplicates_2021_250(int[] nums) {
+        int i = 0;
+        for ( int n : nums ) {
+            if ( i < 2 || n > nums[i-2])
+                nums[i++] = n;
+        }
+        return i;
+    }
+
     public int removeDuplicates(int[] nums) {
         int length = nums.length;
         int count = 0;
