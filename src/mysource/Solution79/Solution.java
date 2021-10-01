@@ -1,6 +1,52 @@
 package mysource.Solution79;
 
 class Solution {
+
+    public boolean exist_2021_250(char[][] board, String word) {
+        char[] wordArray = word.toCharArray();
+        boolean[][] visited = new boolean[board.length][board[0].length];
+        for (int i = 0 ; i < board.length ; i++) {
+            for (int j = 0 ; j < board[0].length ; j++) {
+                if (search(board, visited, wordArray, j, i, 0))
+                    return true;
+                clearVisitedTable(visited);
+            }
+        }
+        return false;
+    }
+    
+    private boolean search(char[][] board, boolean[][] visited, char[] wordArray, int startX, int startY, int index) {
+        if (startX >= board[0].length || startX < 0 || startY < 0 || startY >= board.length || visited[startY][startX] || board[startY][startX] != wordArray[index])
+            return false;
+        
+        if (index == wordArray.length - 1 && board[startY][startX] == wordArray[index]) {
+            return true;
+        }
+        
+        boolean match = false;
+        visited[startY][startX] = true;
+        match |= search(board, visited, wordArray, startX+1, startY, index+1);
+        if (match)
+            return true;
+        match |= search(board, visited, wordArray, startX-1, startY, index+1);
+        if (match)
+            return true;
+        match |= search(board, visited, wordArray, startX, startY+1, index+1);
+        if (match)
+            return true;
+        match |= search(board, visited, wordArray, startX, startY-1, index+1);
+        visited[startY][startX] = match;
+        return match;
+    }
+    
+    private void clearVisitedTable(boolean[][] visited) {
+        for (int i = 0 ; i < visited.length ; i++) {
+            for (int j = 0 ; j < visited[0].length ; j++) {
+                visited[i][j] = false;
+            }
+        }
+    }
+
     public boolean exist(char[][] board, String word) {
         boolean[][] visited = new boolean[board.length][board[0].length];
         char[] target = word.toCharArray();
