@@ -4,6 +4,21 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 class Solution {
+
+    public List<List<Integer>> subsets_2021_250(int[] nums) {
+        List<List<Integer>> results = new ArrayList<>();
+        listSubsets(nums, 0, new ArrayList<>(), results);
+        return results;
+    }
+    
+    private void listSubsets(int[] nums, int start, List<Integer> result, List<List<Integer>> results) {
+        results.add(new ArrayList(result));
+        for ( int i = start ; i < nums.length ; i++ ) {
+            result.add(nums[i]);
+            listSubsets(nums, i+1, result, results);
+            result.remove(result.size()-1);
+        }
+    }
     /**
     public List<List<Integer>> subsets(int[] nums) {
         List<List<Integer>> result = new ArrayList<List<Integer>>();
