@@ -1,6 +1,33 @@
 package mysource.Solution81;
 
 class Solution {
+    public boolean search_2021_250(int[] nums, int target) {
+        int start = 0, end = nums.length - 1;
+        while (start <= end) {
+            int mid = (end-start)/2+start;
+            if (target == nums[mid])
+                return true;
+            if (nums[start] < nums[mid]) {
+                if (target < nums[mid])
+                    end = mid-1;
+                else
+                    start = mid+1;
+            } else if (nums[start] > nums[mid]){
+                if (target > nums[mid])
+                    start = mid+1;
+                else
+                    end = mid-1;
+            } else {
+                for ( int i = 0 ; i < nums.length ; i++ ) {
+                    if (target == nums[i])
+                        return true;
+                }
+                return false;
+            }
+        }
+        return false;
+    }
+
     public boolean search(int[] nums, int target) {
         for ( int i = 0 ; i < nums.length ; i++ ) 
             if (target == nums[i])
