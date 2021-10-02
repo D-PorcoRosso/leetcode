@@ -1,6 +1,13 @@
 package mysource.Solution88;
 
 class Solution {
+    public void merge_2021_250(int[] nums1, int m, int[] nums2, int n) {
+        for ( int i = m ; i < m+n ; i++ ) {
+            nums1[i] = nums2[i-m];
+        }
+        Arrays.sort(nums1);
+    }
+
     public void merge(int[] nums1, int m, int[] nums2, int n) {
 
         if ( n == 0 )
