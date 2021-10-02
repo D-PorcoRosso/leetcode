@@ -8,6 +8,21 @@ class Solution {
         TreeNode(int x) {val = x;}
     }
 
+    public int maxDepth_2021_250(TreeNode root) {
+        return findDepth(root);
+    }
+    private int findDepth(TreeNode root) {
+        if (root == null)
+            return 0;
+        if (root.left == null && root.right == null)
+            return 1;
+        if (root.left == null)
+            return 1 + findDepth(root.right);
+        else if (root.right == null)
+            return 1 + findDepth(root.left);
+        return 1 + Math.max(findDepth(root.left), findDepth(root.right)); 
+    }
+
     public int maxDepth_2021(TreeNode root) {
         return DFS(root);
     }
