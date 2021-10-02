@@ -11,6 +11,30 @@ class Solution {
         }
     }
 
+    public boolean isSymmetric_2021_250(TreeNode root) {
+        if (root != null && root.left != null && root.right != null) {
+            if (root.left.val == root.right.val)
+                return isSym(root.left, root.right);
+        }
+        if (root != null && root.left == null && root.right == null)
+            return true;
+        return false;        
+    }
+    
+    private boolean isSym (TreeNode left, TreeNode right) {
+        if (left != null && right != null) {
+            if (left.val == right.val) {
+                boolean isS = true;
+                isS &= isSym(left.right, right.left);
+                isS &= isSym(left.left, right.right);
+                return isS;
+            }
+        } else if (left == null && right == null)
+            return true;
+        
+        return false;
+    }
+
     public boolean isSymmetric(TreeNode root) {
         if ( root == null )
             return true;
