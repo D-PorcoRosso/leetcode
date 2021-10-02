@@ -29,6 +29,38 @@ class Solution {
         helper(result, cur, nums, index + 1);
     } */
 
+    public List<List<Integer>> subsetsWithDup_2021_250(int[] nums) {
+        int[] numsIndex = new int[nums.length];
+        for ( int i = 0 ; i < nums.length ; i++ ) {
+            numsIndex[i] = i+1;
+        }
+        List<List<Integer>> tempResult = new ArrayList<>();
+        backtracking(numsIndex, 0, new ArrayList<>(), tempResult);
+        List<List<Integer>> results = new ArrayList<>();
+        Arrays.sort(nums);
+        for ( List<Integer> r : tempResult) {
+            List<Integer> result = new ArrayList<>();
+            for ( int index : r) {
+                result.add(nums[index-1]);
+            }
+            if (!results.contains(result))
+                results.add(result);
+        }
+        return results;
+    }
+    
+    private void backtracking(int[] numsIndex, int start, List<Integer> result, List<List<Integer>> results) {
+        results.add(new ArrayList<>(result));
+        if (start == numsIndex.length)
+            return;
+        
+        for ( int i = start ; i < numsIndex.length ; i++ ) {
+            result.add(numsIndex[i]);
+            backtracking(numsIndex, i+1, result, results);
+            result.remove(result.size()-1);
+        }
+    }
+
     public List<List<Integer>> subsetsWithDup(int[] nums) {
         int length = nums.length;
         Arrays.sort(nums);
