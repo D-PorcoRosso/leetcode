@@ -11,6 +11,23 @@ class Solution {
         }
     }
 
+    public boolean isValidBST_2021_250(TreeNode root) {
+        return isValid(root, Long.MAX_VALUE, Long.MIN_VALUE);
+    }
+    
+    private boolean isValid(TreeNode root, long max, long min) {
+        if (root == null)
+            return true;
+        
+        if (root.val >= max || root.val <= min)
+            return false;
+        
+        boolean isV = true;
+        isV &= isValid(root.left, root.val, min);
+        isV &= isValid(root.right, max, root.val);
+        return isV;
+    }
+
     public boolean isValidBST_2021(TreeNode root) {
         return isValid(root, Long.MIN_VALUE, Long.MAX_VALUE);
     }
