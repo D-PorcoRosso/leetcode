@@ -1,6 +1,58 @@
 package mysource.Solution91;
 
 public class Solution {
+
+    public int numDecodings_2021_250(String s) {
+        if (s.startsWith("0"))
+            return 0;
+        
+        int[] dpTable = new int[s.length()];
+        for ( int i = 0 ; i < dpTable.length ; i++ )
+            dpTable[i] = -1;
+        
+        return findDecodingCount(s.toCharArray(), dpTable, 0);
+    }
+    
+    private int findDecodingCount(char[] nums, int[] dpTable, int index) {
+        if (index == nums.length)
+            return 1;
+        if (index == nums.length-1) {
+            if (isValid(Character.toString(nums[index]))) {
+                dpTable[index] = 1;
+            } else
+                dpTable[index] = 0;
+            return dpTable[index];
+        }
+        
+        if (dpTable[index] != -1)
+            return dpTable[index];
+        
+        char c1 = nums[index], c2 = nums[index+1];
+        String combine = new StringBuilder().append(c1).append(c2).toString();
+        if (isValid(Character.toString(c1)) && isValid(combine)) {
+            dpTable[index] = findDecodingCount(nums, dpTable, index+1) + findDecodingCount(nums, dpTable, index+2);
+            return dpTable[index];
+        }
+        
+        if (isValid(Character.toString(c1))) {
+            dpTable[index] = findDecodingCount(nums, dpTable, index+1);
+            return dpTable[index];
+        }
+        
+        dpTable[index] = 0;
+        return dpTable[index];
+    }
+    
+    private boolean isValid(String s) {
+        if (s.startsWith("0")) {
+            return false;
+        }
+        int target = Integer.parseInt(s);
+        if (1 <= target && target <= 26)
+            return true;
+        return false;
+    }
+
     public int numDecodings(String s) {
         char[] array = s.toCharArray();
         int[] dpTable = new int[array.length];
