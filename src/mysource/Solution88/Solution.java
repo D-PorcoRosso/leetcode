@@ -1,6 +1,33 @@
 package mysource.Solution88;
 
 class Solution {
+    public void merge_2021_250_fast(int[] nums1, int m, int[] nums2, int n) {
+        if (n == 0) {
+            return;
+        }
+        int[] nums = new int[m+n];
+        int index = 0, i = 0, j = 0;
+        
+        while (i < m || j < n) {
+            if (i == m) {
+                nums[index] = nums2[j++]; 
+            } else if (j == n) {
+                nums[index] = nums1[i++];
+            } else {
+                if (nums1[i] > nums2[j]) {
+                    nums[index] = nums2[j++];
+                } else {
+                    nums[index] = nums1[i];
+                    i++;
+                }
+            }
+            ++index;
+        }
+        
+        for ( i = 0 ; i < m+n ; i++ ) {
+            nums1[i] = nums[i];
+        }
+    }
     public void merge_2021_250(int[] nums1, int m, int[] nums2, int n) {
         for ( int i = m ; i < m+n ; i++ ) {
             nums1[i] = nums2[i-m];
