@@ -11,6 +11,28 @@ class Solution {
         }
     }
 
+    public boolean isBalanced_2021_250(TreeNode root) {
+        return isBalancedBST(root);
+    }
+    
+    private boolean isBalancedBST(TreeNode root) {
+        if (root == null)
+            return true;
+        if (Math.abs(treeHeight(root.left) - treeHeight(root.right)) <= 1) {
+            boolean isBalanced = true;
+            isBalanced &= isBalancedBST(root.left);
+            isBalanced &= isBalancedBST(root.right);
+            return isBalanced;
+        }
+        return false;
+    }
+    
+    private int treeHeight(TreeNode root) {
+        if (root == null)
+            return 0;
+        return Math.max(treeHeight(root.left), treeHeight(root.right)) + 1;
+    }
+
     private int traverseDepth(TreeNode root) throws Exception {
         if ( root == null )
             return 0;
