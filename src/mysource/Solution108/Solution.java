@@ -14,6 +14,20 @@ class Solution {
         }
     }
 
+    public TreeNode sortedArrayToBST_2021_250(int[] nums) {
+        return buildBinaryTree(nums, 0, nums.length-1);
+    }
+    
+    private TreeNode buildBinaryTree(int[] nums, int start, int end) {
+        if ( start > end )
+            return null;
+        int mid = (end - start)/2 + start;
+        TreeNode root = new TreeNode(nums[mid]);
+        root.left = buildBinaryTree(nums, start, mid-1);
+        root.right = buildBinaryTree(nums, mid+1, end);
+        return root;
+    }
+
     public TreeNode sortedArrayToBST(int[] nums) {
         if ( nums.length == 0 ) {
             return null;
