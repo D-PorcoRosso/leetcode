@@ -11,6 +11,25 @@ class Solution {
         }
     }
 
+    public int minDepth_2021_250(TreeNode root) {
+        return findMin(root);
+    }
+    
+    private int findMin(TreeNode root) {
+        if (root == null)
+            return 0;
+        if (root.left == null)
+            return 1+findMin(root.right);
+        if (root.right == null)
+            return 1+findMin(root.left);
+            
+        int left = findMin(root.left);
+        int right = findMin(root.right);
+        
+        return 1+Math.min(left,right);
+    }
+
+
     public int minDepth(TreeNode root) {
         if(root == null)
             return 0;
