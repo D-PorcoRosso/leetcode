@@ -11,6 +11,25 @@ class Solution {
         }
     }
 
+    public boolean hasPathSum_2021_250(TreeNode root, int sum) {
+        if (root == null)
+            return false;
+        return existPath(root, sum, 0);
+    }
+    
+    private boolean existPath(TreeNode root, int target, int sum) {        
+        sum += root.val;
+            
+        if (root.left == null && root.right == null)
+            return target == sum;
+        boolean exist = false;
+        if (root.left != null)
+            exist |= existPath(root.left, target, sum);
+        if (root.right != null)
+            exist |= existPath(root.right, target, sum);
+        return exist;
+    }
+
     public boolean hasPathSum(TreeNode root, int sum) {
         if ( root == null ) {
             return false;
