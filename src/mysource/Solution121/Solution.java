@@ -2,6 +2,20 @@ package mysource.Solution121;
 
 class Solution {
 
+    public int maxProfit_2021_250_2(int[] prices) {
+        int max = 0;
+        for ( int i = 0 ; i < prices.length ;) {
+            int j = i+1;
+            while ( j < prices.length && prices[j] - prices[i] > 0 ) {
+                if (prices[j] - prices[i] > max)
+                    max = prices[j] - prices[i];
+                j++;
+            }
+            i = j;
+        }
+        return max;
+    }
+
     public int maxProfit_2021_250_1(int[] prices) {
         int max = 0;
         for ( int i = 0 ; i < prices.length ; i++ ) {
