@@ -1,6 +1,22 @@
 package mysource.Solution152;
 
 public class Solution {
+
+    public int maxProduct_2021_250(int[] nums) {
+        if ( nums.length == 0)
+            return 0;
+        
+        int max = nums[0], min = nums[0], returnMax = max;
+        for ( int i = 1 ; i < nums.length ; i++ ) {
+            int localMin = min, localMax = max;
+            max = Math.max(nums[i], Math.max(localMax*nums[i], localMin*nums[i]));
+            min = Math.min(nums[i], Math.min(localMax*nums[i], localMin*nums[i]));
+            returnMax = Math.max(returnMax, max);
+        }
+        
+        return returnMax;
+    }
+
     public int maxProduct_2021_o_n(int[] nums) {
         if (nums.length == 0)
             return 0;
