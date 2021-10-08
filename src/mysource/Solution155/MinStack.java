@@ -1,58 +1,36 @@
 package mysource.Solution155;
 
-class MinStack {
+import java.util.Stack;
 
-    private int capacity = 16;
-    private int[] container = new int[capacity];
-    private int[] minContainer = new int[capacity]; 
-    private int currentIndex = 0;
+class MinStack {
+    
+    private Stack<Integer> container = new Stack<>();
+    private Stack<Integer> min = new Stack<>();
+    private int currentMin = 0;
+    
     public MinStack() {
     }
     
     public void push(int x) {
-        if ( currentIndex >= capacity ) {
-            capacity *= 2;
-            int[] newContainer = new int[capacity];
-            int[] newMinContainer = new int[capacity];
-            for ( int i = 0 ; i < container.length ; i++ ) {
-                newContainer[i] = container[i];
-                newMinContainer[i] = minContainer[i];
-            }
-            container = newContainer;
-            minContainer = newMinContainer;
-        }
-        container[currentIndex] = x;
-        if ( currentIndex > 0 ) {
-            if ( minContainer[currentIndex-1] > x ) {
-                minContainer[currentIndex] = x;
-            } else {
-                minContainer[currentIndex] = minContainer[currentIndex-1];
-            }
-        } else {
-            minContainer[currentIndex] = x;
-        }
-        
-        currentIndex++;
+        if (container.isEmpty())
+            currentMin = x;
+        else
+            currentMin = Math.min(x, min.peek());
+        container.push(x);
+        min.push(currentMin);
     }
     
     public void pop() {
-        if ( currentIndex > 0 )
-            currentIndex--;
+        min.pop();
+        container.pop();
     }
     
     public int top() {
-        if ( currentIndex > 0 )
-            return container[currentIndex-1];
-        else
-            return Integer.MAX_VALUE;
+        return container.peek();
     }
     
     public int getMin() {
-        //System.out.println("currentIndex:"+currentIndex);
-        if ( currentIndex > 0 )
-            return minContainer[currentIndex-1];
-        else
-            return Integer.MAX_VALUE;
+        return min.peek();
     }
 
     public static void main(String[] args) {
