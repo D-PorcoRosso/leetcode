@@ -1,6 +1,16 @@
 package mysource.Solution201;
 
 public class Solution {
+    public int rangeBitwiseAnd_2021_250(int left, int right) {
+        int shift = 0;
+        while (left != right) {
+            left >>= 1;
+            right >>= 1;
+            shift++;
+        }
+        return left << shift;
+    }
+
     public int rangeBitwiseAnd(int left, int right) {
         int andResult = left;
         
