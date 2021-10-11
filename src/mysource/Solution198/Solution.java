@@ -1,6 +1,30 @@
 package mysource.Solution198;
 
 public class Solution {
+
+    public int rob_2021_250(int[] nums) {
+        Integer[] dpTable = new Integer[nums.length];
+        return tryRob(nums, dpTable, 0);
+    }
+    
+    private int tryRob(int[] nums, Integer[] dpTable, int start) {
+        if (start == nums.length-1) {
+            dpTable[start] = nums[start];
+            return dpTable[start];
+        }
+        
+        if (start == nums.length-2) {
+            dpTable[start] = nums[start] > nums[start+1] ? nums[start] : nums[start+1];
+            return dpTable[start];
+        }
+        
+        if (dpTable[start] != null)
+            return dpTable[start];
+        
+        dpTable[start] = Math.max(nums[start] + tryRob(nums, dpTable, start+2), tryRob(nums, dpTable, start+1));
+        return dpTable[start];
+    }
+
     public int rob(int[] nums) {
         int[] dpTable = new int[nums.length];
         for (int i = 0 ; i < dpTable.length ; i++)
