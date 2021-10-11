@@ -1,6 +1,20 @@
 package mysource.Solution191;
 
 class Solution {
+
+    public int hammingWeight_2021_250(int n) {
+        int count = 0;
+        if (n < 0) {
+            n = Integer.MAX_VALUE+n+1;
+            count = 1;
+        }
+        while(n != 0) {
+            if (n%2 == 1)
+                count++;
+            n = n >> 1;
+        }
+        return count;
+    }
     // you need to treat n as an unsigned value
     public int hammingWeight(int n) {
         int count = 0;
