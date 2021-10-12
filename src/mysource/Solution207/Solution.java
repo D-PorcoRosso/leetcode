@@ -1,6 +1,50 @@
 package mysource.Solution207;
 
 public class Solution {
+    public boolean canFinish_2021_250(int numCourses, int[][] prerequisites) {
+        HashMap<Integer, List<Integer>> mapping = new HashMap<>();
+
+        for ( int[] course : prerequisites ) {
+            if (mapping.containsKey(course[1])) {
+                mapping.get(course[1]).add(course[0]);
+            } else {
+                List<Integer> dep = new ArrayList<>();
+                dep.add(course[0]);
+                mapping.put(course[1], dep);
+            }
+        }
+        
+        Boolean[] passCourses = new Boolean[numCourses];
+        
+        for ( int curr = 0 ; curr < numCourses ; curr++ ) {
+            if (isCycle(curr, mapping, passCourses)) {
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    private boolean isCycle(int currCourse, HashMap<Integer, List<Integer>> mapping, Boolean[] status) {
+        if (status[currCourse] != null) {
+            return status[currCourse];
+        }
+        
+        if (!mapping.containsKey(currCourse)) {
+            return false;
+        }
+        
+        status[currCourse] = true;
+        
+        boolean isLoop = false;
+        for( int next : mapping.get(currCourse) ) {
+            isLoop = isCycle(next, mapping, status);
+            if (isLoop)
+                break;
+        }
+        status[currCourse] = false;
+        return isLoop;
+    }
+
     public boolean canFinish(int numCourses, int[][] prerequisites) {
         if (numCourses == 0 || numCourses == 1 || prerequisites.length == 0) {
             return true;
