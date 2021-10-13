@@ -1,6 +1,54 @@
 package mysource.Solution212;
 
 public class Solution {
+
+    public List<String> findWords_2021_250(char[][] board, String[] words) {
+        List<String> results = new ArrayList<>();
+        boolean[][] visited = new boolean[board.length][board[0].length];
+        for ( int i = 0 ; i < words.length ; i++ ) {
+            for ( int y = 0 ; y < board.length ; y++ ) {
+                for ( int x = 0 ; x < board[0].length ; x++ ) {
+                    if (isInBoard(board, visited, x, y, words[i], 0)) {
+                        if (!results.contains(words[i]))
+                            results.add(words[i]);
+                    }
+                    clearVisited(visited);
+                }
+            }
+        }
+        return results;
+    }
+    
+    private void clearVisited(boolean[][] visited) {
+        for ( int i = 0 ; i < visited.length ; i++ ) {
+            for ( int j = 0 ; j < visited[0].length ; j++ ) {
+                visited[i][j] = false;
+            }
+        }
+    }
+    
+    private boolean isInBoard(char[][] board, boolean[][] visited, int x, int y, String word, int wordIndex) {
+        if (x >= board[0].length || x < 0 || y >= board.length || y < 0 || board[y][x] != word.charAt(wordIndex) || visited[y][x])
+            return false;
+        
+        if (wordIndex == word.length()-1)
+            return true;
+        
+        visited[y][x] = true;
+        boolean isIn = false;
+        isIn |= isInBoard(board, visited, x+1, y, word, wordIndex+1);
+        if (isIn) return isIn;
+        isIn |= isInBoard(board, visited, x-1, y, word, wordIndex+1);
+        if (isIn) return isIn;
+        isIn |= isInBoard(board, visited, x, y+1, word, wordIndex+1);
+        if (isIn) return isIn;
+        isIn |= isInBoard(board, visited, x, y-1, word, wordIndex+1);
+        if(!isIn)
+            visited[y][x] = false;
+        return isIn;
+        
+    }
+
     public List<String> findWords(char[][] board, String[] words) {
         List<String> result = new ArrayList<>();
         for ( int i = 0 ; i < words.length ; i++) {
