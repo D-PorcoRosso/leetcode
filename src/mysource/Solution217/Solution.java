@@ -4,6 +4,17 @@ import java.util.HashSet;
 
 class Solution {
 
+    public boolean containsDuplicate_2021_250(int[] nums) {
+        HashMap<Integer, Object> mem = new HashMap<>();
+        for ( int i = 0 ; i < nums.length ; i++) {
+            if (mem.get(nums[i]) != null) {
+                return true;
+            }
+            mem.put(nums[i], new Object());
+        }
+        return false;
+    }
+
     public boolean containsDuplicate_2021(int[] nums) {
         HashMap<Integer, Integer> existTable = new HashMap<>();
         for (int i = 0 ; i < nums.length ; i++) {
