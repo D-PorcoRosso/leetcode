@@ -2,6 +2,24 @@ package mysource.Solution230;
 
 public class Solution {
     TreeNode returnNode = null;
+
+    private int count = 0;
+    private int result = 0;
+    public int kthSmallest_2021_250(TreeNode root, int k) {
+        tracePath(root, k);
+        return result;
+    }
+    
+    public void tracePath(TreeNode root, int k) {
+        if (root == null)
+            return;
+        tracePath(root.left, k);
+        count++;
+        if (k == count)
+            result = root.val;
+        tracePath(root.right, k);
+    }
+
     int count;
     public int kthSmallest(TreeNode root, int k) {
         count = k;
