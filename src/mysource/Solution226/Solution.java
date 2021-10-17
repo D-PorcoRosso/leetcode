@@ -8,6 +8,21 @@ class Solution {
         TreeNode(int x) {val = x;}
     }
 
+    public TreeNode invertTree_2021_250(TreeNode root) {
+        invert_2021_250(root);
+        return root;
+    }
+    
+    private void invert_2021_250(TreeNode root) {
+        if (root == null)
+            return;
+        TreeNode temp = root.left;
+        root.left = root.right;
+        root.right = temp;
+        invert(root.left);
+        invert(root.right);
+    }
+
     public TreeNode invertTree(TreeNode root) {
         if ( root != null ) {
             TreeNode temp = root.right;
