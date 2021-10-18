@@ -2,6 +2,24 @@ package mysource.Solution238;
 
 class Solution {
 
+    public int[] productExceptSelf_2021_250(int[] nums) {
+        int[] firstRound = new int[nums.length];
+        firstRound[0] = nums[0];
+        for (int i = 1 ; i < nums.length ; i++) {
+            firstRound[i] = firstRound[i-1]*nums[i];
+        }
+        int[] secondRound = new int[nums.length];
+        secondRound[nums.length-1] = 1;
+        for (int i = nums.length-2 ; i >= 0 ; i--) {
+            secondRound[i] = secondRound[i+1]*nums[i+1];
+        }
+        nums[0] = secondRound[0];
+        for (int i = 1 ; i < nums.length ; i++ ) {
+            nums[i] = firstRound[i-1]*secondRound[i];
+        }
+        return nums;
+    }
+
     public int[] productExceptSelf_2021(int[] nums) {
         int[] left = new int[nums.length];
         int[] right = new int[nums.length];
