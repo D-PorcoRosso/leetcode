@@ -1,6 +1,23 @@
 package mysource.Solution261;
 
 public class Solution {
+    public boolean validTree_2021_250(int n, int[][] edges) {
+        Integer[] relations = new Integer[n];
+        for ( int i = 0 ; i < edges.length ; i++ ) {
+            int start = find(relations, edges[i][0]);
+            int end = find(relations, edges[i][1]);
+            
+            if (start == end) return false;
+            relations[start] = end;
+        }
+        return edges.length == n-1;
+    }
+    
+    private int find(Integer[] relations, int index) {
+        if (relations[index] == null) return index;
+        return find(relations, relations[index]);
+    }
+
     public boolean validTree(int n, int[][] edges) {
         if ( edges.length != (n - 1) )
             return false;
