@@ -2,6 +2,42 @@ package mysource.Solution271;
 
 public class Solution {
 
+
+    // Encodes a list of strings to a single string.
+    public String encode_2021_250(List<String> strs) {
+        StringBuilder builder = new StringBuilder();
+        int separater = 257;
+        int empty = 258;
+        for (int i = 0 ; i < strs.size(); i++) {
+            if (strs.get(i).equals(""))
+                builder.append((char)empty);
+            else
+                builder.append(strs.get(i));
+            if (i != strs.size()-1 )
+                builder.append((char)separater);
+        }
+        return builder.toString();
+    }
+
+    // Decodes a single string to a list of strings.
+    public List<String> decode_2021_250(String s) {
+        int separaterNum = 257;
+        int empty = 258;
+        
+        String separater = Character.toString(separaterNum);
+        String emptyString = Character.toString(empty);
+        String[] strs = s.split(separater);
+        List<String> result = new ArrayList<>();
+        for (String str : strs) {
+            if(str.equals(emptyString)) {
+                result.add("");
+            } else {
+                result.add(str);
+            }
+        }
+        return result;
+    }
+
     // Encodes a list of strings to a single string.
     public String encode_usingoutchar(List<String> strs) {
         if (strs.size() == 0) return Character.toString((char)257);
