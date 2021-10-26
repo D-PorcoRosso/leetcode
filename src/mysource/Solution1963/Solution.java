@@ -1,6 +1,17 @@
 package mysource.Solution1963;
 
 public class Solution {
+    public int minSwaps_2021_amz(String s) {
+        int count = 0;
+        for ( int i = 0 ; i < s.length(); i++) {
+            if(count > 0 && s.charAt(i) == ']') {
+                count--;
+            } else if (s.charAt(i) == '[') {
+                count++;
+            }
+        }
+        return (count+1)/2;
+    }
     public int minSwaps_amz_TLE(String s) {
         int start = 0, end = s.length()-1;
         int count = 0;
