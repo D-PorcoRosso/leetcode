@@ -1,6 +1,24 @@
 package mysource.Solution287;
 
 class Solution {
+
+    public int findDuplicate_2021_250(int[] nums) {
+        if (nums.length <= 1)
+            return -1;
+        int start = nums[0];
+        int end = nums[0];
+        do {
+            start = nums[start];
+            end = nums[nums[end]];
+        } while(start != end);
+        start = nums[0];
+        while(start != end) {
+            start = nums[start];
+            end = nums[end];
+        }
+        return end;
+    }
+
     public int findDuplicate(int[] nums) {
         for ( int i = 0 ; i < nums.length ; i++ ) 
             for ( int j = 0 ; j < nums.length ; j++ ) {
