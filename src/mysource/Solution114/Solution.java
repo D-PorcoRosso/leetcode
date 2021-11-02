@@ -13,6 +13,17 @@ class Solution {
         }
     }
 
+    TreeNode prev = null;
+    public void flatten_2021_amz_faster(TreeNode root) {
+        if (root == null)
+            return;
+        flatten_2021_amz_faster(root.right);
+        flatten_2021_amz_faster(root.left);
+        root.right = prev;
+        root.left = null;
+        prev = root;
+    }
+
     public void flatten_2021_amz(TreeNode root) {
         Queue<TreeNode> queue = new LinkedList<>();
         preOrder(root, queue);
