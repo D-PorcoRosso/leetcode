@@ -13,38 +13,30 @@ class Solution {
         }
     }
 
-    public void flatten(TreeNode root) {
-        Stack<TreeNode> stack = new Stack<>();
-        preOrder(root, stack);
+    public void flatten_2021_amz(TreeNode root) {
+        Queue<TreeNode> queue = new LinkedList<>();
+        preOrder(root, queue);
+        TreeNode returnNode = null, temp = null;
+        if (!queue.isEmpty()) {
+            returnNode = queue.poll();
+            temp = returnNode;
+        }
+        while(!queue.isEmpty()) {
+            temp.right = queue.poll();
+            temp.left = null;
+            temp = temp.right;
+        }
+        root = returnNode;
+    }
+    
+    private void preOrder(TreeNode root, Queue<TreeNode> queue) {
+        if (root == null)
+            return;
+        queue.offer(root);
+        preOrder(root.left,queue);
+        preOrder(root.right,queue);
     }
 
-    private void preOrder( TreeNode root, Stack<TreeNode> stack ) {
-        if ( root == null )
-            return;
-        if ( root.left != null ) {
-            if ( root.right != null ) {
-                stack.push(root.right);
-                root.right = root.left;
-                root.left = null;
-                preOrder(root.right, stack);
-            } else {
-                if ( !stack.isEmpty() ) {
-                    TreeNode node = stack.pop();
-                    root.right = node;
-                }
-            }
-        } else {
-            if (root.right != null )
-                preOrder(root.right, stack);
-            else{
-                if ( !stack.isEmpty() ) {
-                    TreeNode node = stack.pop();
-                    root.right = node;
-                    preOrder(root.right, stack);
-                }
-            }
-        }
-    }
 
     public static void main(String[] args) {
         Solution solution = new Solution();
