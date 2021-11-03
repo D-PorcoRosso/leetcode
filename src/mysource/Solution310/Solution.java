@@ -1,6 +1,42 @@
 package mysource.Solution310;
 
 public class Solution {
+    public List<Integer> findMinHeightTrees_2021_amz_sol(int n, int[][] edges) {
+        List<Integer> results = new ArrayList<>();
+        if (n < 2) {
+            results.add(0);
+            return results;
+        }
+        
+        ArrayList<Set<Integer>> relations = new ArrayList<>();
+        for ( int i = 0 ; i < n ; i++)
+            relations.add(new HashSet<>());
+        
+        for ( int[] edge : edges) {
+            int start = edge[0], end = edge[1];
+            relations.get(start).add(end);
+            relations.get(end).add(start);
+        }
+        
+        List<Integer> leaves = new ArrayList<>();
+        for ( int i = 0 ; i < n ; i++) {
+            if (relations.get(i).size() == 1)
+                leaves.add(i);
+        }
+        int remainNodes = n; 
+        while (remainNodes > 2) {
+            remainNodes -= leaves.size();
+            List<Integer> nextLeaves = new ArrayList<>();
+            for ( int l : leaves) {
+                int neighbor = relations.get(l).iterator().next();
+                relations.get(neighbor).remove(l);
+                if (relations.get(neighbor).size() == 1)
+                    nextLeaves.add(neighbor);
+            }
+            leaves = nextLeaves;
+        }
+        return leaves;
+    }
     public List<Integer> findMinHeightTrees_2021_amz_TLE(int n, int[][] edges) {
         List<Integer> results = new ArrayList<>();
         if (n < 2) {
