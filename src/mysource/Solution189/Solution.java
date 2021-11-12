@@ -1,6 +1,29 @@
 package mysource.Solution189;
 
 public class Solution {
+
+    public void rotate_googleprepare(int[] nums, int k) {
+        if(nums.length == 1)
+            return;
+        if(k >= nums.length) {
+            k = k%nums.length;
+        }
+        Queue<Integer> queue = new LinkedList<>();
+        int count = nums.length, index = count-k;
+        while (count > 0) {
+            if(index == nums.length) {
+                index = 0;
+            }
+            queue.offer(nums[index]);
+            index++;
+            count--;
+        }
+        index = 0;
+        while(!queue.isEmpty()) {
+            nums[index++] = queue.poll();
+        }
+    }
+
     public void rotate_tle(int[] nums, int k) {
         while (k > 0) {
             k--;
