@@ -1,6 +1,27 @@
 package mysource.Solution26;
 
 class Solution {
+    public int removeDuplicates_2021_google(int[] nums) {
+        if (nums.length <= 1)
+            return nums.length;
+        int start = 0, end = start+1;
+        int index = 0;
+        while(end < nums.length) {
+            while(end < nums.length && nums[start] == nums[end]) {
+                end++;
+            }
+            nums[index] = nums[start];
+            index++;
+            start = end;
+            end = start+1;
+        }
+        if (start < nums.length) {
+            nums[index] = nums[start];
+            return index+1;
+        }
+        return index;
+    }
+
     public int removeDuplicates_2021_250(int[] nums) {
         if (nums.length == 0)
             return 0;
