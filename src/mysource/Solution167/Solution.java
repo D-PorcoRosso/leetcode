@@ -1,6 +1,46 @@
 package mysource.Solution167;
 
 class Solution {
+    public int[] twoSum_2021_google(int[] numbers, int target) {
+        int[] result = new int[2];
+        for ( int i = 0 ; i < numbers.length ; i++ ) {
+            int second = findIndex(numbers, target-numbers[i], i);
+            if(second != -1) {
+                result[0] = i+1;
+                result[1] = second+1;
+                return result;
+            }
+                
+        }
+        return result;
+    }
+    
+    private int findIndex(int[] numbers, int target, int index) {
+        int start = 0, end = numbers.length-1;
+        while(start <= end) {
+            int mid = (end-start)/2 + start;
+            if (numbers[mid] == target) {
+                if (mid == index) {
+                    if (index == 0)
+                        return mid+1;
+                    if (index == numbers.length-1)
+                        return mid-1;
+                    if (numbers[mid-1] == target)
+                        return mid-1;
+                    if (numbers[mid+1] == target)
+                        return mid+1;
+                }
+                return mid;
+            } else if (numbers[mid] < target) {
+                start = mid+1;
+            } else {
+                end = mid-1;
+            }
+        }
+        return -1;
+    }
+
+
     public int[] twoSum(int[] numbers, int target) {
         int[] result = new int[2];
         result[0] = 0;
