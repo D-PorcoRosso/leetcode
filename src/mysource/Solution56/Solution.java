@@ -111,6 +111,40 @@ class Solution {
         return intervalResults;
     }
 
+    public int[][] merge_2021_google(int[][] intervals) {
+        Arrays.sort(intervals, new Comparator<int[]>(){
+            public int compare(int[] a, int[] b) {
+                return a[0] - b[0];
+            }
+        });
+        
+        int[] start = new int[intervals.length];
+        int[] end = new int[intervals.length];
+        for ( int i = 0 ; i < intervals.length ; i++) {
+            start[i] = intervals[i][0];
+            end[i] = intervals[i][1];
+        }
+        List<int[]> results = new ArrayList<>();
+        int startIndex = 0;
+        for ( ; startIndex < start.length ;) {
+            int i = startIndex;
+            int localMax = end[startIndex];
+            while(startIndex < start.length && start[startIndex] <= localMax) {
+                startIndex++;
+                localMax = Math.max(localMax, end[startIndex-1]);
+            }
+            int[] interval = new int[2];
+            interval[0] = start[i];
+            interval[1] = localMax;
+            results.add(interval);
+        }
+        int[][] result = new int[results.size()][2];
+        for (int i = 0 ; i < results.size() ; i++) {
+            result[i] = results.get(i);
+        }
+        return result;
+    }
+
     public static void main(String[] args) {
         Solution solution = new Solution();
         List<Interval> test1 = new ArrayList<>();
