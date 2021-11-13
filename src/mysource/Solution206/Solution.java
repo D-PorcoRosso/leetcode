@@ -7,6 +7,20 @@ class Solution {
         ListNode(int x) {val = x;}
     }
 
+    public ListNode reverseList_2021_google(ListNode head) {
+        if (head == null)
+            return null;
+        ListNode p = head, q = p.next, r = null;
+        while( p != null) {
+            p.next = r;
+            r = p;
+            p = q;
+            if (q != null)
+                q = q.next;
+        }
+        return r;
+    }
+
     public ListNode reverseList_2021(ListNode head) {
         ListNode p = head,q = head,r = null;
         while(p != null) {
