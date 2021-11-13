@@ -4,6 +4,29 @@ import java.util.Arrays;
 
 class Solution {
 
+    public String longestCommonPrefix_2021_google(String[] strs) {
+        String result = "";
+        int shortLength = Integer.MAX_VALUE;
+
+        for (String str : strs) {
+            shortLength = Math.min(shortLength, str.length());
+        }
+        
+        for (int i = 0 ; i < shortLength ; i++) {
+            Character target = null;
+            for (String str : strs) {
+                if (target == null)
+                    target = str.charAt(i);
+                else {
+                    if (str.charAt(i) != target)
+                        return result;
+                }
+            }
+            result += target;
+        }
+        return result;
+    }
+
     public String longestCommonPrefix(String[] strs) {
         if ( strs == null || strs.length == 0 )
             return "";
