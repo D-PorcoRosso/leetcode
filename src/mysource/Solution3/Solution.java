@@ -3,6 +3,22 @@ package mysource.Solution3;
 import java.util.HashMap;
 
 class Solution {
+    public int lengthOfLongestSubstring_2021_google(String s) {
+        int i = 0 , j = 0, max = 0;
+        HashSet<Character> set = new HashSet();
+        while(j < s.length()) {
+            char end = s.charAt(j);
+            if(set.add(end)) {
+                j++;
+                max = Math.max(max, j-i);
+            } else {
+                char front = s.charAt(i);
+                set.remove(front);
+                i++;
+            }
+        }
+        return max;
+    }
     public int lengthOfLongestSubstring_2021_250(String s) {
         char[] str = s.toCharArray();
         int i = 0 , j = 0, max = Integer.MIN_VALUE;
